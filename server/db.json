@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://example.com/sofa1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Bàn ăn gỗ tự nhiên",
+      "price": 12000000,
+      "description": "Bàn ăn làm từ gỗ tự nhiên, thiết kế hiện đại, phù hợp cho gia đình.",
+      "image": "https://example.com/banan1.jpg"
+    }
+  ],
+
+  "orders": [],
+
+  "users": []
+}

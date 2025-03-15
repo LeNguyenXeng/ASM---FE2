@@ -5,18 +5,79 @@
       "name": "Sofa da cao cấp",
       "price": 15000000,
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://example.com/sofa1.jpg"
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
     },
     {
       "id": 2,
-      "name": "Bàn ăn gỗ tự nhiên",
-      "price": 12000000,
-      "description": "Bàn ăn làm từ gỗ tự nhiên, thiết kế hiện đại, phù hợp cho gia đình.",
-      "image": "https://example.com/banan1.jpg"
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+    },
+    {
+      "id": 3,
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+    },
+    {
+      "id": 4,
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+    },
+    {
+      "id": 5,
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+    },
+    {
+      "id": 6,
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+    },
+    {
+      "id": 7,
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+    },
+    {
+      "id": 8,
+      "name": "Sofa da cao cấp",
+      "price": 15000000,
+      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
     }
   ],
-
   "orders": [],
-
-  "users": []
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$4..krtOgJaLcDYFLkN8DsOQbHnuOS22xu7lJ3DWC3HTbXUB58nPAu",
+      "id": 1
+    },
+    {
+      "email": "tungthuyfake@gmail.com",
+      "password": "$2a$10$jpUAnwJ3QY6ysI7gy1f35.oVsCIzkusT7TctWYWYJUjuGSJqUzm6u",
+      "id": 2
+    },
+    {
+      "email": "tungln@gmail.com",
+      "password": "$2a$10$vKJh398bZbYHLnhL4NCZkeYT1b4xigti/t/axc9/29iFBU5ZRm2MW",
+      "id": 3
+    },
+    {
+      "email": "mssv@gmail.com",
+      "password": "$2a$10$io4/7dL6nB3lrwAMGOt7SOFOoYVSdobeVFQHo3O4sqQcrtL0.rcWy",
+      "id": 4
+    }
+  ]
 }

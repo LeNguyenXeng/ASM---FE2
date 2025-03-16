@@ -8,6 +8,9 @@ import Contact from "./pages/cONTACT.JSX";
 import Error from "./pages/Error";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ProductDetail from "./pages/ProductDetail";
+import ShoppingCart from "./pages/ShoppingCart";
+import Profile from "./pages/Profile";
 
 const routerConfig = [
   {
@@ -33,6 +36,18 @@ const routerConfig = [
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/product-detail",
+    element: <ProductDetail />,
+  },
+  {
+    path: "/profile/:id",
+    element: <Profile />,
+  },
+  {
+    path: "/shopping-cart",
+    element: <ShoppingCart />,
   },
   {
     path: "*",

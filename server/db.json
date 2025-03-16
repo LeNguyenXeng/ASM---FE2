@@ -78,6 +78,12 @@
       "email": "mssv@gmail.com",
       "password": "$2a$10$io4/7dL6nB3lrwAMGOt7SOFOoYVSdobeVFQHo3O4sqQcrtL0.rcWy",
       "id": 4
+    },
+    {
+      "email": "tungday@gmail.com",
+      "password": "$2a$10$NP66YXBPN9ZbLEGUd6fDWe7aZMSH.S4ElVkrX4SndTGem0623Wjv.",
+      "name": "Tùng Lê Nguyên",
+      "id": 5
     }
   ]
 }

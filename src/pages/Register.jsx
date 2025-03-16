@@ -80,6 +80,36 @@ function Register() {
                                 <input
                                   type="text"
                                   className="form-control"
+                                  name="password"
+                                  id="password"
+                                  placeholder="Password"
+                                  required
+                                  {...register("name", {
+                                    required: "Không được bỏ trống họ tên",
+                                    minLength: {
+                                      value: 2,
+                                      message: "Mật khẩu phải ít nhất 2 kí tự",
+                                    },
+                                  })}
+                                />
+                                {errors?.name && (
+                                  <small className="text-danger">
+                                    {errors?.name?.message}
+                                  </small>
+                                )}
+                                <label
+                                  htmlFor="password"
+                                  className="form-label"
+                                >
+                                  Họ tên
+                                </label>
+                              </div>
+                            </div>
+                            <div className="col-12">
+                              <div className="form-floating mb-3">
+                                <input
+                                  type="text"
+                                  className="form-control"
                                   name="email"
                                   id="email"
                                   placeholder="name@example.com"
@@ -133,6 +163,7 @@ function Register() {
                                 </label>
                               </div>
                             </div>
+
                             <div className="col-12">
                               <Link
                                 to={"/login"}

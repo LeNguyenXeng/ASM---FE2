@@ -1,7 +1,7 @@
+import { Link } from "react-router";
 import imgGird1 from "../assets/images/img-grid-1.jpg";
 import imgGird2 from "../assets/images/img-grid-2.jpg";
 import imgGird3 from "../assets/images/img-grid-3.jpg";
-
 
 function WeHelp() {
   return (
@@ -37,9 +37,9 @@ function WeHelp() {
               <li>Tạo cảm hứng sáng tạo.</li>
             </ul>
             <p>
-              <a herf="#" className="btn">
+              <Link to={"/shop"} className="btn">
                 Xem thêm
-              </a>
+              </Link>
             </p>
           </div>
         </div>

@@ -19,11 +19,15 @@ function Login() {
 
   const onsubmit = async (data) => {
     try {
-      await axios.post("http://localhost:3000/login", data);
+      const res = await axios.post("http://localhost:3000/login", data);
+      console.log(res.data.user.id);
+
       setTimeout(() => {
         navigate("/");
       }, 1000);
       toast.success("Đăng nhập thành công");
+      localStorage.setItem("Token", res.data.accessToken);
+      localStorage.setItem("UserId", res.data.user.id);
     } catch (error) {
       console.log(error);
       reset();

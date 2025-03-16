@@ -1,8 +1,15 @@
 import userIcon from "../assets/images/user.svg";
 import cartIcon from "../assets/images/cart.svg";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const token = localStorage.getItem("Token");
+    const userId = localStorage.getItem("UserId");
+    token ? navigate(`/profile/${userId}`) : navigate("/login");
+  };
+
   return (
     <>
       <div>
@@ -60,12 +67,12 @@ function Header() {
               </ul>
               <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                 <li>
-                  <Link className="nav-link" to={"/login"}>
+                  <button onClick={handleClick} className="nav-link">
                     <img src={userIcon} alt="User" />
-                  </Link>
+                  </button>
                 </li>
                 <li>
-                  <Link className="nav-link" to="cart.html">
+                  <Link className="nav-link" to={"/shopping-cart"}>
                     <img src={cartIcon} alt="Cart" />
                   </Link>
                 </li>

@@ -57,7 +57,27 @@
       "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": 1,
+      "customer": {
+        "name": "Nguyễn Văn A",
+        "email": "nguyenvana@gmail.com",
+        "phone": "0123456789",
+        "address": "123 Đường ABC, Quận 1, TP.HCM"
+      },
+      "products": [
+        {
+          "productId": 1,
+          "name": "Sofa da cao cấp",
+          "price": 15000000,
+          "quantity": 2
+        }
+      ],
+      "total": 30000000,
+      "status": "Đang xử lý"
+    }
+  ],
   "users": [
     {
       "email": "admin@gmail.com",

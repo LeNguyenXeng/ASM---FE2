@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import ProductDetail from "./pages/ProductDetail";
 import ShoppingCart from "./pages/ShoppingCart";
 import Profile from "./pages/Profile";
+import HomeAdmin from "./pages/Admin/Home";
 
 const routerConfig = [
   {
@@ -48,6 +49,10 @@ const routerConfig = [
   {
     path: "/shopping-cart",
     element: <ShoppingCart />,
+  },
+  {
+    path: "/admin/home",
+    element: <HomeAdmin />,
   },
   {
     path: "*",

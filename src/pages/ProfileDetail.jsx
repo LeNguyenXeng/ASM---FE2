@@ -2,25 +2,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, useParams } from "react-router";
+import avt from "../assets/images/avtprofile.png";
+import "../assets/css/profile.css";
 
 function ProfileDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [users, setUsers] = useState([]);
 
   const getList = async () => {
-    try {
-      const { data } = await axios.get(`http://localhost:3000/users/${id}`);
-      console.log(data);
+    console.log(id);
 
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/users/${id}`
+      );
       setUsers(data);
     } catch (error) {
       console.log(error);
       toast.success("Lỗi");
     }
   };
-
   useEffect(() => {
     if (id) {
       getList();
@@ -42,7 +44,7 @@ function ProfileDetail() {
 
   const handleLogout = (id) => {
     try {
-      axios.delete(`http://localhost:3000/users/${id}`);
+      axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`);
       setTimeout(() => {
         navigate("/login");
       }, 1000);
@@ -54,6 +56,9 @@ function ProfileDetail() {
       toast.error("Lỗi, không thể đăng xuất");
     }
   };
+
+  const isAdmin = users.is_admin;
+
   return (
     <div>
       <section style={{ backgroundColor: "#eee" }}>
@@ -63,22 +68,56 @@ function ProfileDetail() {
               <div className="card mb-4">
                 <div className="card-body text-center">
                   <img
-                    src="https://avatars.githubusercontent.com/u/7790161?v=4"
+                    src={avt}
                     alt="avatar"
                     className="rounded-circle img-fluid"
-                    style={{ width: 150 }}
+                    style={{ width: 150, marginTop: 15 }}
                   />
                   <h5 className="my-3">{users?.name}</h5>
+                  <div className="address">
+                    <div className="icon-address">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                      >
+                        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                      </svg>
+                    </div>
+                    <p>{users.address}</p>
+                  </div>
+
                   <div className="d-flex justify-content-center mb-2">
-                    <button
-                      type="button"
-                      data-mdb-button-init
-                      data-mdb-ripple-init
-                      className="btn btn-primary"
-                      onClick={handleLogout}
-                    >
-                      Đăng xuất
-                    </button>
+                    {isAdmin ? (
+                      <>
+                        <button
+                          type="button"
+                          data-mdb-button-init
+                          data-mdb-ripple-init
+                          className="btn btn-primary"
+                          onClick={handleLogout}
+                        >
+                          Đăng xuất
+                        </button>
+                        <button
+                          type="button"
+                          data-mdb-button-init
+                          data-mdb-ripple-init
+                          className="btn btn-outline-primary ms-1"
+                        >
+                          Admin Login
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        className="btn btn-primary"
+                        onClick={handleLogout}
+                      >
+                        Đăng xuất
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -157,6 +196,24 @@ function ProfileDetail() {
                     </div>
                     <div className="col-sm-9">
                       <p className="text-muted mb-0">{users?.email}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <p className="mb-0">Địa Chỉ</p>
+                    </div>
+                    <div className="col-sm-9">
+                      <p className="text-muted mb-0">{users?.address}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <p className="mb-0">Số điện thoại</p>
+                    </div>
+                    <div className="col-sm-9">
+                      <p className="text-muted mb-0">{users?.phone}</p>
                     </div>
                   </div>
                 </div>

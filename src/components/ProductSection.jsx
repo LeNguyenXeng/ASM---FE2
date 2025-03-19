@@ -9,7 +9,7 @@ function ProductSection() {
 
   const getList = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/products");
+      const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/products`);
       setProducts(data);
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ function ProductSection() {
           </div>
 
           {products.slice(0, 3).map((product) => (
-            <ProductHome product={product} />
+            <ProductHome key={product.id} product={product} />
           ))}
         </div>
       </div>

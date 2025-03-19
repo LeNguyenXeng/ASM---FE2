@@ -1,7 +1,29 @@
-import img3 from "../assets/images/product-3.png";
+import { useParams } from "react-router";
 import TextProductDetail from "./TextProductDetail";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import "../assets/css/productdetail.css";
 
 function ProductDetailCMP() {
+  const { id } = useParams();
+  const [products, setProducts] = useState([]);
+
+  const getApi = async (id) => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/products/${id}`
+      );
+      setProducts(data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Không thể gọi API");
+    }
+  };
+
+  useEffect(() => {
+    getApi(id);
+  }, [id]);
   return (
     <>
       <section className="py-5 ">
@@ -9,25 +31,11 @@ function ProductDetailCMP() {
           <div className="row gx-5">
             <aside className="col-lg-6">
               <div className=" mb-3 d-flex justify-content-center">
-                <a
-                  data-fslightbox="mygalley"
-                  className="rounded-4"
-                  data-type="image"
-                >
-                  <img
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "100vh",
-                      margin: "auto",
-                    }}
-                    className="rounded-4 fit"
-                    src={img3}
-                  />
-                </a>
+                <img className="image-product-detail" src={products.image} />
               </div>
             </aside>
             <main className="col-lg-6">
-              <TextProductDetail />
+              <TextProductDetail products={products} />
             </main>
           </div>
         </div>

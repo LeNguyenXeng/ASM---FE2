@@ -20,7 +20,7 @@ function Home() {
       <WeHelp />
       <StartTestimonial />
       <Blog />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

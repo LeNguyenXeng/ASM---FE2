@@ -19,7 +19,10 @@ function Login() {
 
   const onsubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/login", data);
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/login`,
+        data
+      );
       console.log(res.data.user.id);
 
       setTimeout(() => {

@@ -19,7 +19,7 @@ function Register() {
 
   const onsubmit = async (data) => {
     try {
-      await axios.post("http://localhost:3000/register", data);
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/register`, data);
       setTimeout(() => {
         navigate("/login");
       }, 1000);
@@ -102,6 +102,74 @@ function Register() {
                                   className="form-label"
                                 >
                                   Họ tên
+                                </label>
+                              </div>
+                            </div>
+                            <div className="col-12">
+                              <div className="form-floating mb-3">
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  name="password"
+                                  id="password"
+                                  placeholder="Password"
+                                  required
+                                  {...register("address", {
+                                    required: "Không được bỏ trống địa chỉ",
+                                    minLength: {
+                                      value: 2,
+                                      message: "Địa chỉ phải ít nhất 2 kí tự",
+                                    },
+                                  })}
+                                />
+                                {errors?.address && (
+                                  <small className="text-danger">
+                                    {errors?.address?.message}
+                                  </small>
+                                )}
+                                <label
+                                  htmlFor="password"
+                                  className="form-label"
+                                >
+                                  Địa Chỉ
+                                </label>
+                              </div>
+                            </div>
+                            <div className="col-12">
+                              <div className="form-floating mb-3">
+                                <input
+                                  type="number"
+                                  min={0}
+                                  className="form-control"
+                                  name="password"
+                                  id="password"
+                                  placeholder="Password"
+                                  required
+                                  {...register("phone", {
+                                    required:
+                                      "Không được bỏ trống số điện thoại",
+                                    minLength: {
+                                      value: 1,
+                                      message:
+                                        "Số điện thoại phải ít nhất 1 kí tự",
+                                    },
+                                    maxLength: {
+                                      value: 10,
+                                      message:
+                                        "Số điện thoại không được quá 10 kí tự",
+                                    },
+                                  })}
+                                />
+                                {errors?.phone && (
+                                  <small className="text-danger">
+                                    {errors?.phone?.message}
+                                  </small>
+                                )}
+                                <label
+                                  htmlFor="password"
+                                  className="form-label"
+                                >
+                                  Số điện thoại
                                 </label>
                               </div>
                             </div>

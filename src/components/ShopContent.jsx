@@ -9,7 +9,7 @@ function ShopContent() {
 
   const getList = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/products");
+      const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/products`);
       setProducts(data);
     } catch (error) {
       console.log(error);

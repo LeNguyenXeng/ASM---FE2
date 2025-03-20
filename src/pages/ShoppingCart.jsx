@@ -9,7 +9,6 @@ function ShoppingCart() {
     <div>
       <Header />
       <BannerShopping />
-
       <Total />
       <Footer />
     </div>

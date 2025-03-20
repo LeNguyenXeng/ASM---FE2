@@ -56,6 +56,9 @@ function ProfileDetail() {
       toast.error("Lỗi, không thể đăng xuất");
     }
   };
+  const nextPage = () => {
+    navigate(`/updateaccount/${users.id}`);
+  };
 
   const isAdmin = users.is_admin;
 
@@ -73,18 +76,16 @@ function ProfileDetail() {
                     className="rounded-circle img-fluid"
                     style={{ width: 150, marginTop: 15 }}
                   />
-                  <h5 className="my-3">{users?.name}</h5>
-                  <div className="address">
-                    <div className="icon-address">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 384 512"
-                      >
-                        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
-                      </svg>
-                    </div>
-                    <p>{users.address}</p>
-                  </div>
+                  <h5 className="fw-bolder my-3">{users?.name}</h5>
+                  <button
+                    onClick={nextPage}
+                    type="button"
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    className="btn btn-outline-primary mb-2 ms-1"
+                  >
+                    Cập nhật tài khoản
+                  </button>
 
                   <div className="d-flex justify-content-center mb-2">
                     {isAdmin ? (
@@ -124,7 +125,7 @@ function ProfileDetail() {
               <div className="card mb-4 mb-lg-0">
                 <div className="card-body p-0">
                   <ul className="list-group list-group-flush rounded-3">
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
                         style={{ cursor: "pointer" }}
                         width={17}
@@ -136,7 +137,7 @@ function ProfileDetail() {
                       </svg>
                       <p className="mb-0">xengdayy</p>
                     </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
                         style={{ cursor: "pointer" }}
                         width={16}
@@ -149,7 +150,7 @@ function ProfileDetail() {
 
                       <p className="mb-0">@tungthuyfake</p>
                     </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
                         style={{ cursor: "pointer" }}
                         width={17}
@@ -162,7 +163,7 @@ function ProfileDetail() {
 
                       <p className="mb-0">LeNguyenXeng</p>
                     </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
                         style={{ cursor: "pointer" }}
                         width={19}
@@ -214,6 +215,17 @@ function ProfileDetail() {
                     </div>
                     <div className="col-sm-9">
                       <p className="text-muted mb-0">{users?.phone}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <p className="mb-0">Vai trò</p>
+                    </div>
+                    <div className="col-sm-9">
+                      <p className="text-muted mb-0">
+                        {isAdmin ? "Admin" : "Thành viên"}
+                      </p>
                     </div>
                   </div>
                 </div>

@@ -18,6 +18,7 @@ function Register() {
   } = useForm();
 
   const onsubmit = async (data) => {
+    data.is_admin = false;
     try {
       await axios.post(`${import.meta.env.VITE_BASE_URL}/register`, data);
       setTimeout(() => {
@@ -41,10 +42,10 @@ function Register() {
           <div className="row justify-content-center">
             <div className="col-12 col-xxl-11">
               <div className="card border-light-subtle shadow-sm">
-                <div className="row g-0">
+                <div className="g-0 row">
                   <div className="col-12 col-md-6">
                     <img
-                      className="img-fluid rounded-start w-100 h-100 object-fit-cover"
+                      className="h-100 rounded-start w-100 img-fluid object-fit-cover"
                       loading="lazy"
                       src={login}
                       alt="Welcome back you've been missed!"
@@ -235,7 +236,7 @@ function Register() {
                             <div className="col-12">
                               <Link
                                 to={"/login"}
-                                className="link-secondary text-decoration-none"
+                                className="text-decoration-none link-secondary"
                               >
                                 Bạn đã có tài khoản?
                               </Link>

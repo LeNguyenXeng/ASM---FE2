@@ -98,7 +98,8 @@
       "name": "Lê Nguyên Tùng",
       "address": "Hà Nội",
       "phone": "0396180619",
-      "id": 6
+      "id": 6,
+      "is_admin": true
     },
     {
       "email": "tungph49028@gmail.com",
@@ -107,6 +108,15 @@
       "address": "Thanh Hóa",
       "phone": "0396180619",
       "id": 7
+    },
+    {
+      "email": "tungxeng@gmail.com",
+      "password": "$2a$10$Zg7p.u4VyG.W7lH9Rrjuf.fK.2Se5WVDhcklWvJPPSW5G4DSY4n52",
+      "name": "X$ng",
+      "address": "Thanh Hóa",
+      "phone": "0396180619",
+      "is_admin": false,
+      "id": 8
     }
   ]
 }

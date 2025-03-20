@@ -12,6 +12,7 @@ import ProductDetail from "./pages/ProductDetail";
 import ShoppingCart from "./pages/ShoppingCart";
 import Profile from "./pages/Profile";
 import HomeAdmin from "./pages/Admin/Home";
+import UpdateAccount from "./pages/UpdateAccount";
 
 const routerConfig = [
   {
@@ -47,6 +48,10 @@ const routerConfig = [
     element: <Profile />,
   },
   {
+    path: "/updateaccount/:id",
+    element: <UpdateAccount />,
+  },
+  {
     path: "/shopping-cart",
     element: <ShoppingCart />,
   },
@@ -54,6 +59,7 @@ const routerConfig = [
     path: "/admin/home",
     element: <HomeAdmin />,
   },
+
   {
     path: "*",
     element: <Error />,

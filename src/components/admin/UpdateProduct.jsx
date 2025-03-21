@@ -121,7 +121,7 @@ function UpdateProductPage() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                  to={"/admin/listproduct"}
+                   to={"/admin/listaccount"}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản

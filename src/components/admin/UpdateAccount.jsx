@@ -1,12 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router";
+import { Link, Route, Routes, useNavigate, useParams } from "react-router";
 import "../../assets/css/adminheader.css";
 import $ from "jquery";
 import ListProduct from "../../pages/admin/ListProduct";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 function UpdateAccountPage() {
+  const { id } = useParams();
+
+  const { register, handleSubmit, reset } = useForm();
+  const getList = async (id) => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/users/${id}`
+      );
+      reset(data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Lỗi");
+    }
+  };
+
+  useEffect(() => {
+    getList(id);
+  }, []);
+
+  const onSubmit = async (data) => {
+    try {
+      await axios.put(`${import.meta.env.VITE_BASE_URL}/users/${id}`, data);
+      navigate("/admin/listaccount");
+      toast.success("Cập nhật thành công");
+    } catch (error) {
+      console.log(error);
+      toast.error("Không thể cập nhật");
+    }
+  };
+
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -121,7 +152,7 @@ function UpdateAccountPage() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                  to={"/admin/listproduct"}
+                  to={"/admin/listaccount"}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản
@@ -171,7 +202,7 @@ function UpdateAccountPage() {
               </div>
               <div className="card-body">
                 <div className="table-responsive">
-                  <form action>
+                  <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-3">
                       <label
                         htmlFor="exampleInputEmail1"
@@ -184,6 +215,7 @@ function UpdateAccountPage() {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        {...register("name")}
                       />
                     </div>
                     <div className="mb-3">
@@ -198,6 +230,7 @@ function UpdateAccountPage() {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        {...register("email")}
                       />
                     </div>
                     <div className="mb-3">
@@ -212,6 +245,7 @@ function UpdateAccountPage() {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        {...register("password")}
                       />
                     </div>
                     <div className="mb-3">
@@ -227,6 +261,7 @@ function UpdateAccountPage() {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        {...register("phone")}
                       />
                     </div>
                     <div className="mb-3">
@@ -241,15 +276,13 @@ function UpdateAccountPage() {
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
+                        {...register("address")}
                       />
                     </div>
 
-                    <a
-                      href="/dssanpham.html"
-                      className="btn btn-primary btn-icon-split"
-                    >
-                      <span className="text">Cập Nhật Tài Khoản</span>
-                    </a>
+                    <button className="btn btn-primary btn-icon-split">
+                      Cập Nhật Tài Khoản
+                    </button>
                   </form>
                 </div>
               </div>

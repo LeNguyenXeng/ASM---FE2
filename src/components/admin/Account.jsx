@@ -8,6 +8,39 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
 function AccountPage() {
+  const [users, setUsers] = useState([]);
+  console.log(users);
+
+  const getListUser = async () => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/users`
+      );
+      setUsers(data);
+    } catch (error) {
+      console.error(
+        "API call failed:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      if (confirm("Bạn có muốn xóa không?")) {
+        await axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`);
+        toast.success("Xóa thành công");
+        getListUser();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getListUser();
+  }, []);
+
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -122,7 +155,7 @@ function AccountPage() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                  to={"/admin/listproduct"}
+                  to={"/admin/listaccount"}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản
@@ -189,30 +222,35 @@ function AccountPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>Â</td>
-                        <td>2011/04/25</td>
-                        <td>
-                          <div style={{ display: "flex", gap: 5 }}>
-                            <Link
-                              to={"/admin/updateaccount/:id"}
-                              className="button-circle-edit"
-                            >
-                              <div className="icon-circle-edit">
-                                <i className="fa fa-wrench" />
-                              </div>
-                            </Link>
-                            <Link className="button-circle-delete">
-                              <div className="icon-circle-edit">
-                                <i className="fa fa-trash" />
-                              </div>
-                            </Link>
-                          </div>
-                        </td>
-                      </tr>
+                      {users.map((item, index) => (
+                        <tr key={index}>
+                          <td>{item.id}</td>
+                          <td>{item.name}</td>
+                          <td>{item.email}</td>
+                          <td>{item.address}</td>
+                          <td>{item.phone}</td>
+                          <td>
+                            <div style={{ display: "flex", gap: 5 }}>
+                              <Link
+                                to={`/admin/updateaccount/${item.id}`}
+                                className="button-circle-edit"
+                              >
+                                <div className="icon-circle-edit">
+                                  <i className="fa fa-wrench" />
+                                </div>
+                              </Link>
+                              <Link
+                                onClick={() => handleDelete(item.id)}
+                                className="button-circle-delete"
+                              >
+                                <div className="icon-circle-edit">
+                                  <i className="fa fa-trash" />
+                                </div>
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>

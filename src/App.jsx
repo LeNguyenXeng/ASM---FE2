@@ -13,6 +13,12 @@ import ShoppingCart from "./pages/ShoppingCart";
 import Profile from "./pages/Profile";
 import HomeAdmin from "./pages/Admin/Home";
 import UpdateAccount from "./pages/UpdateAccount";
+import Addproduct from "./pages/admin/AddProduct";
+import ListProduct from "./pages/admin/ListProduct";
+import AccountPage from "./components/admin/Account";
+import UpdateProduct from "./pages/admin/UpdateProduct";
+import UpdateAccountAdmin from "./pages/admin/UpdateAccountPage";
+import ProfileAdmin from "./pages/admin/ProfileAdmin";
 
 const routerConfig = [
   {
@@ -59,7 +65,30 @@ const routerConfig = [
     path: "/admin/home",
     element: <HomeAdmin />,
   },
-
+  {
+    path: "/admin/addproduct",
+    element: <Addproduct />,
+  },
+  {
+    path: "/admin/listproduct",
+    element: <ListProduct />,
+  },
+  {
+    path: "/admin/updateproduct/:id",
+    element: <UpdateProduct />,
+  },
+  {
+    path: "/admin/listaccount",
+    element: <AccountPage />,
+  },
+  {
+    path: "/admin/updateaccount/:id",
+    element: <UpdateAccountAdmin />,
+  },
+  {
+    path: "/admin/profile/:id",
+    element: <ProfileAdmin />,
+  },
   {
     path: "*",
     element: <Error />,

@@ -7,7 +7,7 @@ import ListProduct from "../../pages/admin/ListProduct";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
-function Header() {
+function AccountPage() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -181,10 +181,10 @@ function Header() {
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Hình ảnh</th>
-                        <th>Mô tả</th>
+                        <th>Tên tài khoản</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Số điện thoại</th>
                         <th>Hành động</th>
                       </tr>
                     </thead>
@@ -193,20 +193,12 @@ function Header() {
                         <td>1</td>
                         <td>System Architect</td>
                         <td>Edinburgh</td>
-                        <td>
-                          <img
-                            width={100}
-                            src={
-                              "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-PNG-HD-Quality.png"
-                            }
-                            alt=""
-                          />
-                        </td>
+                        <td>Â</td>
                         <td>2011/04/25</td>
                         <td>
                           <div style={{ display: "flex", gap: 5 }}>
                             <Link
-                              to={"/admin/updateproduct/:id"}
+                              to={"/admin/updateaccount/:id"}
                               className="button-circle-edit"
                             >
                               <div className="icon-circle-edit">
@@ -234,4 +226,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default AccountPage;

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Routes, useNavigate } from "react-router";
 import "../../assets/css/adminheader.css";
-import "../../assets/css/admincontent.css";
 import $ from "jquery";
 import ListProduct from "../../pages/admin/ListProduct";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
-function Header() {
+function UpdateAccountPage() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -167,62 +166,91 @@ function Header() {
                   className="m-0 font-weight-bold"
                   style={{ fontWeight: 700 }}
                 >
-                  DANH SÁCH SẢN PHẨM
+                  CẬP NHẬT TÀI KHOẢN
                 </h6>
               </div>
               <div className="card-body">
                 <div className="table-responsive">
-                  <table
-                    className="table table-bordered"
-                    id="dataTable"
-                    width="100%"
-                    cellSpacing={0}
-                  >
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Hình ảnh</th>
-                        <th>Mô tả</th>
-                        <th>Hành động</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                          <img
-                            width={100}
-                            src={
-                              "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-PNG-HD-Quality.png"
-                            }
-                            alt=""
-                          />
-                        </td>
-                        <td>2011/04/25</td>
-                        <td>
-                          <div style={{ display: "flex", gap: 5 }}>
-                            <Link
-                              to={"/admin/updateproduct/:id"}
-                              className="button-circle-edit"
-                            >
-                              <div className="icon-circle-edit">
-                                <i className="fa fa-wrench" />
-                              </div>
-                            </Link>
-                            <Link className="button-circle-delete">
-                              <div className="icon-circle-edit">
-                                <i className="fa fa-trash" />
-                              </div>
-                            </Link>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <form action>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
+                        Họ tên
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
+                        Mật Khẩu
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
+                        Số điện thoại
+                      </label>
+                      <input
+                        type="number"
+                        min={0}
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
+                      >
+                        Địa chỉ
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                      />
+                    </div>
+
+                    <a
+                      href="/dssanpham.html"
+                      className="btn btn-primary btn-icon-split"
+                    >
+                      <span className="text">Cập Nhật Tài Khoản</span>
+                    </a>
+                  </form>
                 </div>
               </div>
             </div>
@@ -234,4 +262,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default UpdateAccountPage;

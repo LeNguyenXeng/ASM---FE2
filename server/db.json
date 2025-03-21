@@ -80,12 +80,6 @@
   ],
   "users": [
     {
-      "email": "tungthuyfake@gmail.com",
-      "password": "$2a$10$jpUAnwJ3QY6ysI7gy1f35.oVsCIzkusT7TctWYWYJUjuGSJqUzm6u",
-      "id": 2,
-      "role": true
-    },
-    {
       "email": "tungday@gmail.com",
       "password": "$2a$10$NP66YXBPN9ZbLEGUd6fDWe7aZMSH.S4ElVkrX4SndTGem0623Wjv.",
       "name": "Tùng Lê Nguyên",
@@ -100,14 +94,6 @@
       "phone": "0396180619",
       "id": 6,
       "is_admin": true
-    },
-    {
-      "email": "tungph49028@gmail.com",
-      "password": "$2a$10$FjtAvCGGoof.Au0ZJkPRT.T03Z1vc33oMjh7GCb2vWopRjXxAKv1K",
-      "name": "ASUS TUF Gaming A15",
-      "address": "Thanh Hóa",
-      "phone": "0396180619",
-      "id": 7
     },
     {
       "email": "tungxeng@gmail.com",

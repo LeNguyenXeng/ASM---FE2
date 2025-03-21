@@ -1,9 +1,9 @@
-import Header from "../../components/Admin/Header";
+import HomePage from "../../components/admin/Home";
 
 function Home() {
   return (
     <>
-      <Header />
+      <HomePage />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import couch from "../assets/images/couch.png";
 
-function Banner() {
+function Banner({ title, title2, des, isShowBtn = false }) {
   return (
     <div className="hero">
       <div className="container">
@@ -9,21 +9,20 @@ function Banner() {
           <div className="col-lg-5">
             <div className="intro-excerpt">
               <h1>
-                Săn ngay ưu đãi{" "}
-                <span className="d-block">Ghế đẹp giá tốt!</span>
+                {title}
+                <span className="d-block">{title2}</span>
               </h1>
-              <p className="mb-4">
-                Khám phá bộ sưu tập ghế sang trọng của chúng tôi và biến không
-                gian sống của bạn thành nơi lý tưởng với giá cực tốt!
-              </p>
-              <p>
-                <Link to={"/shop"} className="btn btn-secondary me-2">
-                  Mua ngay
-                </Link>
-                <Link to={"/shop"} className="btn btn-white-outline">
-                  Khám phá
-                </Link>
-              </p>
+              <p className="mb-4">{des}</p>
+              {isShowBtn && (
+                <p>
+                  <Link to={"/shop"} className="btn btn-secondary me-2">
+                    Mua ngay
+                  </Link>
+                  <Link to={"/shop"} className="btn btn-white-outline">
+                    Khám phá
+                  </Link>
+                </p>
+              )}
             </div>
           </div>
           <div className="col-lg-7">

@@ -13,14 +13,19 @@ import Footer from "../components/Footer";
 function Home() {
   return (
     <div>
-      <Header />
-      <Banner />
+      <Banner
+        title={"Săn ngay ưu đãi"}
+        title2={"Ghế đẹp giá tốt!"}
+        des={
+          "Khám phá bộ sưu tập ghế sang trọng của chúng tôi và biến không gian sống của bạn thành nơi lý tưởng với giá cực tốt!"
+        }
+        isShowBtn
+      />
       <ProductSection />
       <WhyChooseUs />
       <WeHelp />
       <StartTestimonial />
       <Blog />
-      <Footer />
     </div>
   );
 }

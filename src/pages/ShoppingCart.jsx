@@ -1,5 +1,4 @@
-import BannerShopping from "../components/BannerShopping";
-import Cart from "../components/Cart";
+import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Total from "../components/Total";
@@ -7,10 +6,13 @@ import Total from "../components/Total";
 function ShoppingCart() {
   return (
     <div>
-      <Header />
-      <BannerShopping />
+      <Banner
+        title={"Giỏ hàng"}
+        des={
+          "Khám phá bộ sưu tập ghế sang trọng của chúng tôi và biến không gian sống của bạn thành nơi lý tưởng với giá cực tốt!"
+        }
+      />
       <Total />
-      <Footer />
     </div>
   );
 }

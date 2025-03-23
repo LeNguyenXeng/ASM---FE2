@@ -5,9 +5,7 @@ import UpdateAccountDetail from "../components/UpdateAccountDetail";
 function UpdateAccount() {
   return (
     <>
-      <Header />
       <UpdateAccountDetail />
-      <Footer />
     </>
   );
 }

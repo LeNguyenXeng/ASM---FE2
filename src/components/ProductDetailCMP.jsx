@@ -6,6 +6,9 @@ import toast from "react-hot-toast";
 import "../assets/css/productdetail.css";
 
 function ProductDetailCMP() {
+  
+  
+
   const { id } = useParams();
   const [products, setProducts] = useState([]);
 

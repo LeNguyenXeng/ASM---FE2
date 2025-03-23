@@ -4,9 +4,7 @@ import ProductDetailCMP from "../components/ProductDetailCMP";
 function ProductDetail() {
   return (
     <>
-      <Header />
       <ProductDetailCMP />
-      <Footer />
     </>
   );
 }

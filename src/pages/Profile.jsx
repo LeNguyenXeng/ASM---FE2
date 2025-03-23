@@ -5,9 +5,7 @@ import ProfileDetail from "./ProfileDetail";
 function Profile() {
   return (
     <div>
-      <Header />
       <ProfileDetail />
-      <Footer />
     </div>
   );
 }

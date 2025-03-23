@@ -1,11 +1,24 @@
-import img from "../assets/images/product-1.png";
+import { useSelector } from "react-redux";
+import ProductCart from "./ProductCart";
+import formatCurrency from "../consts/formatCurrency";
 
 function Total() {
+  const cartItems = useSelector((state) => state.cart.cartItem);
+
+  const totalPrice = () => {
+    return cartItems.reduce((accumulator, currentValue) => {
+      return accumulator + (currentValue.quantity * currentValue.price || 0);
+    }, 0);
+  };
+
   return (
     <div className="untree_co-section before-footer-section">
       <div className="container">
         <div className="row mb-5">
-          <form className="col-md-12" method="post">
+          <form
+            className="col-md-12"
+            onSubmit={(event) => event.preventDefault()}
+          >
             <div className="site-blocks-table">
               <table className="table">
                 <thead>
@@ -19,52 +32,25 @@ function Total() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="product-thumbnail">
-                      <img src={img} alt="Image" className="img-fluid" />
-                    </td>
-                    <td className="product-name">
-                      <h2 className="h5 text-black">Product 1</h2>
-                    </td>
-                    <td>2.300.000₫</td>
-                    <td>
-                      <div
-                        className="input-group mb-3 d-flex align-items-center quantity-container"
-                        style={{ maxWidth: 120 }}
-                      >
-                        <div className="input-group-prepend">
-                          <button
-                            className="btn btn-outline-black decrease"
-                            type="button"
-                          >
-                            −
-                          </button>
-                        </div>
-                        <input
-                          type="text"
-                          className="form-control text-center quantity-amount"
-                          defaultValue={1}
-                          placeholder
-                          aria-label="Example text with button addon"
-                          aria-describedby="button-addon1"
-                        />
-                        <div className="input-group-append">
-                          <button
-                            className="btn btn-outline-black increase"
-                            type="button"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td>2.300.000₫</td>
-                    <td>
-                      <a href="#" className="btn btn-black btn-sm">
-                        X
-                      </a>
-                    </td>
-                  </tr>
+                  {cartItems.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} style={{ textAlign: "center" }}>
+                        <span
+                          style={{
+                            fontSize: "15px",
+                            color: "red",
+                            fontWeight: 500,
+                          }}
+                        >
+                          Chưa có sản phẩm nào trong giỏ hàng
+                        </span>
+                      </td>
+                    </tr>
+                  ) : (
+                    cartItems.map((item) => (
+                      <ProductCart key={item.id} item={item} />
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
@@ -76,7 +62,7 @@ function Total() {
               <div className="col-md-12">
                 <div className="row">
                   <div className="col-md-12 text-right border-bottom mb-5">
-                    <h3 className="text-black h4 text-uppercase">
+                    <h3 className="text-black h4 text-uppercase" style={{fontWeight: 700}}>
                       Tổng giỏ hàng
                     </h3>
                   </div>
@@ -89,16 +75,13 @@ function Total() {
                   </div>
                   <div className="col-md-6 text-right">
                     <strong style={{ fontSize: 20, color: "rgb(210, 0, 0)" }}>
-                      4.600.000₫
+                      {formatCurrency(totalPrice())}
                     </strong>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-12">
-                    <button
-                      className="btn btn-black btn-lg py-3 btn-block"
-                      onclick="window.location='checkout.html'"
-                    >
+                    <button className="btn btn-black btn-lg py-3 btn-block">
                       Thanh Toán
                     </button>
                   </div>
@@ -111,4 +94,5 @@ function Total() {
     </div>
   );
 }
+
 export default Total;

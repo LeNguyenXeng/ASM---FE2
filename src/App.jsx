@@ -19,80 +19,35 @@ import AccountPage from "./components/admin/Account";
 import UpdateProduct from "./pages/admin/UpdateProduct";
 import UpdateAccountAdmin from "./pages/admin/UpdateAccountPage";
 import ProfileAdmin from "./pages/admin/ProfileAdmin";
+import Layout from "../src/components/Layout.jsx";
+
+const withLayout = (Component) => {
+  return (
+    <Layout>
+      <Component />
+    </Layout>
+  );
+};
 
 const routerConfig = [
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/shop",
-    element: <Shop />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/product-detail/:id",
-    element: <ProductDetail />,
-  },
-  {
-    path: "/profile/:id",
-    element: <Profile />,
-  },
-  {
-    path: "/updateaccount/:id",
-    element: <UpdateAccount />,
-  },
-  {
-    path: "/shopping-cart",
-    element: <ShoppingCart />,
-  },
-  {
-    path: "/admin/home",
-    element: <HomeAdmin />,
-  },
-  {
-    path: "/admin/addproduct",
-    element: <Addproduct />,
-  },
-  {
-    path: "/admin/listproduct",
-    element: <ListProduct />,
-  },
-  {
-    path: "/admin/updateproduct/:id",
-    element: <UpdateProduct />,
-  },
-  {
-    path: "/admin/listaccount",
-    element: <AccountPage />,
-  },
-  {
-    path: "/admin/updateaccount/:id",
-    element: <UpdateAccountAdmin />,
-  },
-  {
-    path: "/admin/profile/:id",
-    element: <ProfileAdmin />,
-  },
-  {
-    path: "*",
-    element: <Error />,
-  },
+  { path: "/", element: withLayout(Home) },
+  { path: "/shop", element: withLayout(Shop) },
+  { path: "/about", element: withLayout(About) },
+  { path: "/contact", element: withLayout(Contact) },
+  { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
+  { path: "/product-detail/:id", element: withLayout(ProductDetail) },
+  { path: "/profile/:id", element: withLayout(Profile) },
+  { path: "/updateaccount/:id", element: withLayout(UpdateAccount) },
+  { path: "/shopping-cart", element: withLayout(ShoppingCart) },
+  { path: "/admin/home", element: withLayout(HomeAdmin) },
+  { path: "/admin/addproduct", element: withLayout(Addproduct) },
+  { path: "/admin/listproduct", element: withLayout(ListProduct) },
+  { path: "/admin/updateproduct/:id", element: withLayout(UpdateProduct) },
+  { path: "/admin/listaccount", element: withLayout(AccountPage) },
+  { path: "/admin/updateaccount/:id", element: withLayout(UpdateAccountAdmin) },
+  { path: "/admin/profile/:id", element: withLayout(ProfileAdmin) },
+  { path: "*", element: <Error /> },
 ];
 
 function App() {

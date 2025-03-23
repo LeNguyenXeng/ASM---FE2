@@ -1,9 +1,11 @@
 import userIcon from "../assets/images/user.svg";
 import cartIcon from "../assets/images/cart.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header() {
   const navigate = useNavigate();
+  const cartItemCount = useSelector((state) => state.cart.cartItem.length);
   const handleClick = () => {
     const token = localStorage.getItem("Token");
     const userId = localStorage.getItem("UserId");
@@ -74,6 +76,14 @@ function Header() {
                 <li>
                   <Link className="nav-link" to={"/shopping-cart"}>
                     <img src={cartIcon} alt="Cart" />
+                    {cartItemCount > 0 && (
+                      <span
+                        className="badge bg-danger rounded-circle position-absolute"
+                        style={{ marginLeft: -12 }}
+                      >
+                        {cartItemCount}
+                      </span>
+                    )}
                   </Link>
                 </li>
               </ul>

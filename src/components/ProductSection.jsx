@@ -1,15 +1,17 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
-import ProductHome from "./ProductHome";
 import { Link } from "react-router";
+import Product from "./Product";
 
 function ProductSection() {
   const [products, setProducts] = useState([]);
 
   const getList = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/products`);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/products`
+      );
       setProducts(data);
     } catch (error) {
       console.log(error);
@@ -38,7 +40,7 @@ function ProductSection() {
           </div>
 
           {products.slice(0, 3).map((product) => (
-            <ProductHome key={product.id} product={product} />
+            <Product key={product.id} product={product} />
           ))}
         </div>
       </div>

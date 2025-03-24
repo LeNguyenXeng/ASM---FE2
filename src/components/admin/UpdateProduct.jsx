@@ -8,8 +8,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function UpdateProductPage() {
-  const { id } = useParams()
-  const [products, setProducts] = useState([])
+  const { id } = useParams();
 
   const getList = async (id) => {
     try {
@@ -31,27 +30,21 @@ function UpdateProductPage() {
     register,
     handleSubmit,
     formState: { errors },
-    reset
-  } = useForm()
-
-
-  const nav = useNavigate()
+    reset,
+  } = useForm();
 
   const addProduct = async (data) => {
     try {
       await axios.put(`${import.meta.env.VITE_BASE_URL}/products/${id}`, data);
-      navigate("/admin/listproduct");
+      setTimeout(() => {
+        navigate("/admin/listproduct");
+      }, 500);
       toast.success("Cập nhật thành công");
     } catch (error) {
       console.log(error);
       toast.error("Không thể cập nhật");
     }
   };
-
-
-
-
-
 
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
@@ -230,10 +223,14 @@ function UpdateProductPage() {
                         className="form-control"
                         id="productName"
                         aria-describedby="nameHelp"
-                        {...register('name', { required: "Không được bỏ trống" })}
+                        {...register("name", {
+                          required: "Không được bỏ trống",
+                        })}
                       />
                       {errors?.name && (
-                        <small className="text-danger">{errors.name.message}</small>
+                        <small className="text-danger">
+                          {errors.name.message}
+                        </small>
                       )}
                     </div>
                     <div className="mb-3">
@@ -249,10 +246,18 @@ function UpdateProductPage() {
                         className="form-control"
                         id="productPrice"
                         aria-describedby="priceHelp"
-                        {...register('price', { required: "Vui lòng nhập giá sản phẩm", min: { value: 0, message: "Giá sản phẩm không được âm" } })}
+                        {...register("price", {
+                          required: "Vui lòng nhập giá sản phẩm",
+                          min: {
+                            value: 0,
+                            message: "Giá sản phẩm không được âm",
+                          },
+                        })}
                       />
                       {errors?.price && (
-                        <small className="text-danger">{errors.price.message}</small>
+                        <small className="text-danger">
+                          {errors.price.message}
+                        </small>
                       )}
                     </div>
                     <div className="mb-3">
@@ -267,10 +272,14 @@ function UpdateProductPage() {
                         className="form-control"
                         id="productImage"
                         aria-describedby="imageHelp"
-                        {...register('image', { required: "Vui lòng nhập URL hình ảnh" })}
+                        {...register("image", {
+                          required: "Vui lòng nhập URL hình ảnh",
+                        })}
                       />
                       {errors?.image && (
-                        <small className="text-danger">{errors.image.message}</small>
+                        <small className="text-danger">
+                          {errors.image.message}
+                        </small>
                       )}
                     </div>
                     <div className="mb-3">
@@ -284,10 +293,18 @@ function UpdateProductPage() {
                         className="form-control"
                         id="productDescription"
                         rows={8}
-                        {...register('description', { required: "Vui lòng nhập mô tả sản phẩm", minLength: { value: 10, message: "Mô tả phải ít nhất 10 ký tự" } })}
+                        {...register("description", {
+                          required: "Vui lòng nhập mô tả sản phẩm",
+                          minLength: {
+                            value: 10,
+                            message: "Mô tả phải ít nhất 10 ký tự",
+                          },
+                        })}
                       />
                       {errors?.description && (
-                        <small className="text-danger">{errors.description.message}</small>
+                        <small className="text-danger">
+                          {errors.description.message}
+                        </small>
                       )}
                     </div>
                     <button className="btn btn-primary btn-icon-split">

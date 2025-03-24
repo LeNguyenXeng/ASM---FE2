@@ -47,7 +47,7 @@ const routerConfig = [
   { path: "/admin/listproduct", element: <ListProduct /> },
   { path: "/admin/updateproduct/:id", element: <UpdateProduct /> },
   { path: "/admin/listaccount", element: <AccountPage /> },
-  { path: "/admin/updateaccount/:id", element: <UpdateAccount /> },
+  { path: "/admin/updateaccount/:id", element: <UpdateAccountAdmin /> },
   { path: "/admin/profile/:id", element: <ProfileAdmin /> },
   { path: "*", element: <Error /> },
 ];

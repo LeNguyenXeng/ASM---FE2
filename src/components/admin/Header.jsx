@@ -8,6 +8,32 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
 function Header() {
+  const [products, setProducts] = useState([])
+
+  const getList = async (data) => {
+    const res = await axios.get('http://localhost:3000/products', data);
+    setProducts(res.data);
+  }
+
+  const handleDelete = async (id) => {
+    try {
+      if (confirm("Bạn có muốn xóa không?")) {
+        await axios.delete(`http://localhost:3000/products/${id}`);
+        toast.success("Xóa thành công");
+        getList();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Xóa lỗi")
+    }
+  }
+
+
+  useEffect(() => {
+    getList()
+  }, []);
+
+
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -122,7 +148,7 @@ function Header() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                   to={"/admin/listaccount"}
+                  to={"/admin/listaccount"}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản
@@ -189,38 +215,40 @@ function Header() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                          <img
-                            width={100}
-                            src={
-                              "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-PNG-HD-Quality.png"
-                            }
-                            alt=""
-                          />
-                        </td>
-                        <td>2011/04/25</td>
-                        <td>
-                          <div style={{ display: "flex", gap: 5 }}>
-                            <Link
-                              to={"/admin/updateproduct/:id"}
-                              className="button-circle-edit"
-                            >
-                              <div className="icon-circle-edit">
-                                <i className="fa fa-wrench" />
-                              </div>
-                            </Link>
-                            <Link className="button-circle-delete">
-                              <div className="icon-circle-edit">
-                                <i className="fa fa-trash" />
-                              </div>
-                            </Link>
-                          </div>
-                        </td>
-                      </tr>
+                      {products.map((product) => (
+                        <tr key={product.id}>
+                          <td>{product.id}</td>
+                          <td>{product.name}</td>
+                          <td>{product.price}</td>
+                          <td>
+                            <img
+                              width={100}
+                              src={
+                                product.image
+                              }
+                              alt=""
+                            />
+                          </td>
+                          <td>{product.description}</td>
+                          <td>
+                            <div style={{ display: "flex", gap: 5 }}>
+                              <Link
+                                to={`/admin/updateproduct/${product.id}`}
+                                className="button-circle-edit"
+                              >
+                                <div className="icon-circle-edit">
+                                  <i className="fa fa-wrench" />
+                                </div>
+                              </Link>
+                              <Link onClick={() => handleDelete(product.id)} className="button-circle-delete">
+                                <div className="icon-circle-edit">
+                                  <i className="fa fa-trash" />
+                                </div>
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>

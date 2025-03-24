@@ -4,9 +4,31 @@ import "../../assets/css/adminheader.css";
 import $ from "jquery";
 import ListProduct from "../../pages/admin/ListProduct";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 
 function AddProductPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
+
+
+  const nav = useNavigate()
+
+  const addProduct = async (data) => {
+    try {
+      await axios.post('http://localhost:3000/products', data)
+      nav('/admin/listproduct')
+      toast.success('Thêm thành công')
+    } catch (error) {
+      console.log(error);
+      toast.error("Lỗi")
+
+    }
+  }
+
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -121,7 +143,7 @@ function AddProductPage() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                   to={"/admin/listaccount"}
+                  to={"/admin/listaccount"}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản
@@ -171,7 +193,7 @@ function AddProductPage() {
               </div>
               <div className="card-body">
                 <div className="table-responsive">
-                  <form action>
+                  <form onSubmit={handleSubmit(addProduct)}>
                     <div className="mb-3">
                       <label
                         htmlFor="exampleInputEmail1"
@@ -182,9 +204,13 @@ function AddProductPage() {
                       <input
                         type="text"
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="productName"
+                        aria-describedby="nameHelp"
+                        {...register('name', { required: "Không được bỏ trống" })}
                       />
+                      {errors?.name && (
+                        <small className="text-danger">{errors.name.message}</small>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -197,9 +223,13 @@ function AddProductPage() {
                         type="number"
                         min={0}
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="productPrice"
+                        aria-describedby="priceHelp"
+                        {...register('price', { required: "Vui lòng nhập giá sản phẩm", min: { value: 0, message: "Giá sản phẩm không được âm" } })}
                       />
+                      {errors?.price && (
+                        <small className="text-danger">{errors.price.message}</small>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -211,9 +241,13 @@ function AddProductPage() {
                       <input
                         type="text"
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="productImage"
+                        aria-describedby="imageHelp"
+                        {...register('image', { required: "Vui lòng nhập URL hình ảnh" })}
                       />
+                      {errors?.image && (
+                        <small className="text-danger">{errors.image.message}</small>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -224,14 +258,17 @@ function AddProductPage() {
                       </label>
                       <textarea
                         className="form-control"
-                        id="exampleFormControlTextarea1"
+                        id="productDescription"
                         rows={8}
-                        defaultValue={""}
+                        {...register('description', { required: "Vui lòng nhập mô tả sản phẩm", minLength: { value: 10, message: "Mô tả phải ít nhất 10 ký tự" } })}
                       />
+                      {errors?.description && (
+                        <small className="text-danger">{errors.description.message}</small>
+                      )}
                     </div>
-                    <a className="btn btn-primary btn-icon-split">
+                    <button className="btn btn-primary btn-icon-split">
                       <span className="text">Thêm Sản Phẩm</span>
-                    </a>
+                    </button>
                   </form>
                 </div>
               </div>

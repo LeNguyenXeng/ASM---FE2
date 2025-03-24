@@ -1,12 +1,58 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router";
+import { Link, Route, Routes, useNavigate, useParams } from "react-router";
 import "../../assets/css/adminheader.css";
 import $ from "jquery";
 import ListProduct from "../../pages/admin/ListProduct";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 function UpdateProductPage() {
+  const { id } = useParams()
+  const [products, setProducts] = useState([])
+
+  const getList = async (id) => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/products/${id}`
+      );
+      reset(data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Lỗi");
+    }
+  };
+
+  useEffect(() => {
+    getList(id);
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm()
+
+
+  const nav = useNavigate()
+
+  const addProduct = async (data) => {
+    try {
+      await axios.put(`${import.meta.env.VITE_BASE_URL}/products/${id}`, data);
+      navigate("/admin/listproduct");
+      toast.success("Cập nhật thành công");
+    } catch (error) {
+      console.log(error);
+      toast.error("Không thể cập nhật");
+    }
+  };
+
+
+
+
+
+
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -121,7 +167,7 @@ function UpdateProductPage() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                   to={"/admin/listaccount"}
+                  to={"/admin/listaccount"}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản
@@ -171,7 +217,7 @@ function UpdateProductPage() {
               </div>
               <div className="card-body">
                 <div className="table-responsive">
-                  <form action>
+                  <form onSubmit={handleSubmit(addProduct)}>
                     <div className="mb-3">
                       <label
                         htmlFor="exampleInputEmail1"
@@ -182,9 +228,13 @@ function UpdateProductPage() {
                       <input
                         type="text"
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="productName"
+                        aria-describedby="nameHelp"
+                        {...register('name', { required: "Không được bỏ trống" })}
                       />
+                      {errors?.name && (
+                        <small className="text-danger">{errors.name.message}</small>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -197,9 +247,13 @@ function UpdateProductPage() {
                         type="number"
                         min={0}
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="productPrice"
+                        aria-describedby="priceHelp"
+                        {...register('price', { required: "Vui lòng nhập giá sản phẩm", min: { value: 0, message: "Giá sản phẩm không được âm" } })}
                       />
+                      {errors?.price && (
+                        <small className="text-danger">{errors.price.message}</small>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -211,9 +265,13 @@ function UpdateProductPage() {
                       <input
                         type="text"
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="productImage"
+                        aria-describedby="imageHelp"
+                        {...register('image', { required: "Vui lòng nhập URL hình ảnh" })}
                       />
+                      {errors?.image && (
+                        <small className="text-danger">{errors.image.message}</small>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label
@@ -224,17 +282,17 @@ function UpdateProductPage() {
                       </label>
                       <textarea
                         className="form-control"
-                        id="exampleFormControlTextarea1"
+                        id="productDescription"
                         rows={8}
-                        defaultValue={""}
+                        {...register('description', { required: "Vui lòng nhập mô tả sản phẩm", minLength: { value: 10, message: "Mô tả phải ít nhất 10 ký tự" } })}
                       />
+                      {errors?.description && (
+                        <small className="text-danger">{errors.description.message}</small>
+                      )}
                     </div>
-                    <a
-                      href="/dssanpham.html"
-                      className="btn btn-primary btn-icon-split"
-                    >
-                      <span className="text">Cập nhật Sản Phẩm</span>
-                    </a>
+                    <button className="btn btn-primary btn-icon-split">
+                      <span className="text">Cập Nhật Sản Phẩm</span>
+                    </button>
                   </form>
                 </div>
               </div>

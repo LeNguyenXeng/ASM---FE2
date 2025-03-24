@@ -20,6 +20,8 @@ import UpdateProduct from "./pages/admin/UpdateProduct";
 import UpdateAccountAdmin from "./pages/admin/UpdateAccountPage";
 import ProfileAdmin from "./pages/admin/ProfileAdmin";
 import Layout from "../src/components/Layout.jsx";
+import HomePage from "./components/admin/Home.jsx";
+import AddProduct from "./pages/admin/AddProduct";
 
 const withLayout = (Component) => {
   return (
@@ -40,13 +42,13 @@ const routerConfig = [
   { path: "/profile/:id", element: withLayout(Profile) },
   { path: "/updateaccount/:id", element: withLayout(UpdateAccount) },
   { path: "/shopping-cart", element: withLayout(ShoppingCart) },
-  { path: "/admin/home", element: withLayout(HomeAdmin) },
-  { path: "/admin/addproduct", element: withLayout(Addproduct) },
-  { path: "/admin/listproduct", element: withLayout(ListProduct) },
-  { path: "/admin/updateproduct/:id", element: withLayout(UpdateProduct) },
-  { path: "/admin/listaccount", element: withLayout(AccountPage) },
-  { path: "/admin/updateaccount/:id", element: withLayout(UpdateAccountAdmin) },
-  { path: "/admin/profile/:id", element: withLayout(ProfileAdmin) },
+  { path: "/admin/home", element: <HomePage /> },
+  { path: "/admin/addproduct", element: <AddProduct /> },
+  { path: "/admin/listproduct", element: <ListProduct /> },
+  { path: "/admin/updateproduct/:id", element: <UpdateProduct /> },
+  { path: "/admin/listaccount", element: <AccountPage /> },
+  { path: "/admin/updateaccount/:id", element: <UpdateAccount /> },
+  { path: "/admin/profile/:id", element: <ProfileAdmin /> },
   { path: "*", element: <Error /> },
 ];
 

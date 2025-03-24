@@ -2,8 +2,8 @@
   "products": [
     {
       "id": 1,
-      "name": "Sofa da cao cấp",
-      "price": 15000000,
+      "name": "Sofa da cao cấp1",
+      "price": "100000",
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
       "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
     },
@@ -55,6 +55,27 @@
       "price": 15000000,
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
       "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+    },
+    {
+      "name": "thùy linh",
+      "price": "23333344",
+      "image": "https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg",
+      "description": "123456789065675",
+      "id": 13
+    },
+    {
+      "name": "linhvienthuy72@gmail.com",
+      "price": "23333344",
+      "image": "https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg",
+      "description": "2345er6t78y9u0i-",
+      "id": 14
+    },
+    {
+      "name": "thùy linh",
+      "price": "23333344",
+      "image": "https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg",
+      "description": "4328970-0-09-90",
+      "id": 18
     }
   ],
   "orders": [

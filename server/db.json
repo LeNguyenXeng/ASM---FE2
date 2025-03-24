@@ -2,10 +2,10 @@
   "products": [
     {
       "id": 1,
-      "name": "Sofa da cao cấp1",
-      "price": "100000",
-      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+      "name": "Sofa Giường MARGARET",
+      "price": "9360000",
+      "description": "Kích thước (DxR):\n1800*850mm – Giá: 9,360,000 VND\n2000*850mm – Giá: 10,400,000 VND\n2200*850mm – Giá: 11,440,000 VND",
+      "image": "https://png.pngtree.com/png-clipart/20240831/original/pngtree-sofa-set-png-image_15897893.png"
     },
     {
       "id": 2,
@@ -16,66 +16,45 @@
     },
     {
       "id": 3,
-      "name": "Sofa da cao cấp",
-      "price": 15000000,
+      "name": "Sofas - AJ Maison",
+      "price": "30000000",
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+      "image": "https://khothietke.net/wp-content/uploads/2021/05/PNGKhothietke.net-03087.png"
     },
     {
       "id": 4,
-      "name": "Sofa da cao cấp",
-      "price": 15000000,
+      "name": "Modern Chair",
+      "price": "15000000",
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+      "image": "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-Download-Free-PNG.png"
     },
     {
       "id": 5,
-      "name": "Sofa da cao cấp",
-      "price": 15000000,
+      "name": "Grey Chair",
+      "price": "1000000",
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+      "image": "https://png.pngtree.com/png-vector/20241019/ourmid/pngtree-a-simple-grey-modern-chair-isolated-on-transparent-background-png-image_14122820.png"
     },
     {
       "id": 6,
-      "name": "Sofa da cao cấp",
-      "price": 15000000,
-      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+      "name": "Flow",
+      "price": "200000",
+      "description": "Upholstered in your choice of fabric & colour\nOak, Walnut or Black wood finishes available\nAlso available with arms",
+      "image": "https://www.hsifurniture.co.uk/new-used-office-furniture/Flow-chair-wood-4leg-FW16W.jpg"
     },
     {
       "id": 7,
-      "name": "Sofa da cao cấp",
-      "price": 15000000,
+      "name": "Ghế ăn gỗ đệm vải có tay N010489",
+      "price": "3360000",
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
+      "image": "https://product.hstatic.net/200000532817/product/ghe_an_go_dem_vai_co_tay_n010489_2e5d27e9b70847548fb0c178c19f924f_master.jpg"
     },
     {
       "id": 8,
-      "name": "Sofa da cao cấp",
-      "price": 15000000,
-      "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://pula.vn/storage/images/2024/05/10/sofa-da-cao-cap-chong-chay-pula-benjamin-v69-photoroom.webp"
-    },
-    {
-      "name": "thùy linh",
-      "price": "23333344",
-      "image": "https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg",
-      "description": "123456789065675",
-      "id": 13
-    },
-    {
-      "name": "linhvienthuy72@gmail.com",
-      "price": "23333344",
-      "image": "https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg",
-      "description": "2345er6t78y9u0i-",
-      "id": 14
-    },
-    {
-      "name": "thùy linh",
-      "price": "23333344",
-      "image": "https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg",
-      "description": "4328970-0-09-90",
-      "id": 18
+      "name": "Ghế ăn - Ghế chữ A V9",
+      "price": "90000",
+      "description": "Ghế ăn  XDAILY - Ghế chữ A .\n\nChất liệu :  gỗ cao su hoặc tần bì , cốt polywood , nệm bọc da PU hoặc vải .\n\nMàu sắc : tùy chọn  đặt bọc theo màu liên hệ XDAILY .\n\nKích thước : Chiều cao tiêu chuẩn cho người trưởng thành , H45cm ( xem chi tiết phía dưới ) .\n\nỨng dụng : ghế ăn, ghế cafe, ghế họp, ghế văn phòng, ghế nhà hàng , ghế quầy bar ...\n\nXuất xứ : Việt Nam .\n\nBảo hành : 12 tháng",
+      "image": "https://product.hstatic.net/1000400963/product/ghe-an-cafe-xdaily-chu-a_f742dd934474448187f0059f9ff098b5_master.jpg"
     }
   ],
   "orders": [
@@ -102,10 +81,12 @@
   "users": [
     {
       "email": "tungday@gmail.com",
-      "password": "$2a$10$NP66YXBPN9ZbLEGUd6fDWe7aZMSH.S4ElVkrX4SndTGem0623Wjv.",
+      "password": "$2a$10$xbZ8iHJXduP1e.qR1E9Zm.XQctT4.yCiPjaTHUJE4YzyeeZnlImR2",
       "name": "Tùng Lê Nguyên",
       "id": 5,
-      "is_admin": true
+      "is_admin": true,
+      "phone": "0396180619",
+      "address": "Thanh Hóa"
     },
     {
       "email": "tungk@gmail.com",

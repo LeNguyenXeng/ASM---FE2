@@ -8,12 +8,12 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
 function Header() {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   const getList = async (data) => {
-    const res = await axios.get('http://localhost:3000/products', data);
+    const res = await axios.get("http://localhost:3000/products", data);
     setProducts(res.data);
-  }
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -24,15 +24,21 @@ function Header() {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Xóa lỗi")
+      toast.error("Xóa lỗi");
     }
-  }
-
+  };
 
   useEffect(() => {
-    getList()
+    getList();
   }, []);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
@@ -54,6 +60,21 @@ function Header() {
       toast.error("Lỗi, không thể đăng xuất");
     }
   };
+
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [itemsPerPage] = useState(5);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   useEffect(() => {
     const mobileScreen = window.matchMedia("(max-width: 990px)");
 
@@ -88,6 +109,12 @@ function Header() {
     };
   }, []);
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  };
   return (
     <>
       <div className="dashboard">
@@ -197,6 +224,19 @@ function Header() {
                 </h6>
               </div>
               <div className="card-body">
+                <div className="mb-4">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Tìm kiếm tại đây..."
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    style={{ height: 45 }}
+                  />
+                </div>
+
                 <div className="table-responsive">
                   <table
                     className="table table-bordered"
@@ -215,18 +255,16 @@ function Header() {
                       </tr>
                     </thead>
                     <tbody>
-                      {products.map((product) => (
+                      {currentProducts.map((product) => (
                         <tr key={product.id}>
                           <td>{product.id}</td>
                           <td>{product.name}</td>
-                          <td>{product.price}</td>
+                          <td>{formatPrice(product.price)}</td>
                           <td>
                             <img
                               width={100}
-                              src={
-                                product.image
-                              }
-                              alt=""
+                              src={product.image}
+                              alt={product.name}
                             />
                           </td>
                           <td>{product.description}</td>
@@ -240,7 +278,10 @@ function Header() {
                                   <i className="fa fa-wrench" />
                                 </div>
                               </Link>
-                              <Link onClick={() => handleDelete(product.id)} className="button-circle-delete">
+                              <Link
+                                onClick={() => handleDelete(product.id)}
+                                className="button-circle-delete"
+                              >
                                 <div className="icon-circle-edit">
                                   <i className="fa fa-trash" />
                                 </div>
@@ -251,6 +292,28 @@ function Header() {
                       ))}
                     </tbody>
                   </table>
+
+                  <div className="d-flex justify-content-center mt-4">
+                    <nav aria-label="Page navigation">
+                      <ul className="pagination">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                          <li
+                            key={index + 1}
+                            className={`page-item ${
+                              currentPage === index + 1 ? "active" : ""
+                            }`}
+                          >
+                            <button
+                              className="page-link"
+                              onClick={() => handlePageChange(index + 1)}
+                            >
+                              {index + 1}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </nav>
+                  </div>
                 </div>
               </div>
             </div>

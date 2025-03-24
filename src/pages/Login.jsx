@@ -3,9 +3,9 @@ import "../assets/css/login.css";
 import login from "../assets/images/login.jpg";
 import homely from "../assets/images/homely-logo.png";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
+import { loginAccount } from "../service/auth";
 
 function Login() {
   const navigate = useNavigate();
@@ -19,18 +19,15 @@ function Login() {
 
   const onsubmit = async (data) => {
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/login`,
-        data
-      );
-      console.log(res.data.user.id);
+      const res = await loginAccount(data);
+      console.log(res.user.id);
 
       setTimeout(() => {
         navigate("/");
       }, 1000);
       toast.success("Đăng nhập thành công");
-      localStorage.setItem("Token", res.data.accessToken);
-      localStorage.setItem("UserId", res.data.user.id);
+      localStorage.setItem("Token", res.accessToken);
+      localStorage.setItem("UserId", res.user.id);
     } catch (error) {
       console.log(error);
       reset();

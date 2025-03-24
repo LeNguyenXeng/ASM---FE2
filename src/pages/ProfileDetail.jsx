@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, useParams } from "react-router";
 import avt from "../assets/images/avtprofile.png";
 import "../assets/css/profile.css";
+import { profile } from "../service/auth";
 
 function ProfileDetail() {
   const { id } = useParams();
@@ -14,13 +15,11 @@ function ProfileDetail() {
     console.log(id);
 
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/users/${id}`
-      );
-      setUsers(data);
+      const res = await profile(id);
+      setUsers(res);
     } catch (error) {
       console.log(error);
-      toast.success("Lỗi");
+      toast.error("Lỗi");
     }
   };
   useEffect(() => {
@@ -83,6 +82,7 @@ function ProfileDetail() {
                     data-mdb-button-init
                     data-mdb-ripple-init
                     className="btn btn-outline-primary mb-2 ms-1"
+                    style={{ background: "#0d6efd", border: "#0d6efd" }}
                   >
                     Cập nhật tài khoản
                   </button>
@@ -96,8 +96,6 @@ function ProfileDetail() {
                           data-mdb-ripple-init
                           className="btn btn-primary"
                           style={{ background: "#dc3545", border: "#dc3545" }}
-
-                          
                           onClick={handleLogout}
                         >
                           Đăng xuất

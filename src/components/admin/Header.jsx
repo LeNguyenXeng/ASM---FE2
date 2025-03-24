@@ -6,6 +6,7 @@ import $ from "jquery";
 import ListProduct from "../../pages/admin/ListProduct";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import formatCurrency from "../../consts/formatCurrency";
 
 function Header() {
   const [products, setProducts] = useState([]);
@@ -61,7 +62,7 @@ function Header() {
     }
   };
 
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -109,12 +110,6 @@ function Header() {
     };
   }, []);
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("vi-VN", {
-      style: "currency",
-      currency: "VND",
-    }).format(price);
-  };
   return (
     <>
       <div className="dashboard">
@@ -259,7 +254,7 @@ function Header() {
                         <tr key={product.id}>
                           <td>{product.id}</td>
                           <td>{product.name}</td>
-                          <td>{formatPrice(product.price)}</td>
+                          <td>{formatCurrency(product.price)}</td>
                           <td>
                             <img
                               width={100}

@@ -3,9 +3,9 @@ import "../assets/css/login.css";
 import login from "../assets/images/login.jpg";
 import homely from "../assets/images/homely-logo.png";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
+import { registerAccount } from "../service/auth";
 
 function Register() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Register() {
   const onsubmit = async (data) => {
     data.is_admin = false;
     try {
-      await axios.post(`${import.meta.env.VITE_BASE_URL}/register`, data);
+      await registerAccount(data);
       setTimeout(() => {
         navigate("/login");
       }, 1000);

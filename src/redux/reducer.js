@@ -1,5 +1,6 @@
 import { ADD_TO_CART } from "./action.js";
 import { DELETE_PRODUCT } from "./action.js";
+import { CLEAR_CART } from "./action.js";
 const initialState = {
   cartItem: [],
 };
@@ -21,8 +22,8 @@ const cartReducer = (state = initialState, action) => {
               ? {
                   ...item,
                   quantity: action.updateFromCart
-                    ? action.payload.quantity // Nếu từ giỏ hàng thì dùng số lượng từ payload
-                    : item.quantity + (action.payload.quantity || 1), // Nếu từ trang chi tiết thì cộng dồn
+                    ? action.payload.quantity
+                    : item.quantity + (action.payload.quantity || 1),
                 }
               : item
           ),
@@ -42,6 +43,13 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItem: cartItem.filter((item) => item.id !== action.payload),
       };
+
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItem: [], 
+      };
+
     default:
       return state;
   }

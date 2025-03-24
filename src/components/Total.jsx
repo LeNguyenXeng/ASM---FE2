@@ -1,14 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux"; // Nhập useDispatch
 import ProductCart from "./ProductCart";
 import formatCurrency from "../consts/formatCurrency";
+import { clearCart } from "../redux/action";
 
 function Total() {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItem);
+  console.log(cartItems);
 
   const totalPrice = () => {
     return cartItems.reduce((accumulator, currentValue) => {
       return accumulator + (currentValue.quantity * currentValue.price || 0);
     }, 0);
+  };
+
+  const handleDeleteCart = () => {
+    dispatch(clearCart());
   };
 
   return (
@@ -55,6 +62,15 @@ function Total() {
               </table>
             </div>
           </form>
+          <div style={{ textAlign: "end" }}>
+            <button
+              className="btn btn-black btn-sm py-3 btn-block"
+              style={{ background: "#dc3545", border: "#dc3545" }}
+              onClick={handleDeleteCart} // Thêm sự kiện click
+            >
+              Xóa giỏ hàng
+            </button>
+          </div>
         </div>
         <div className="row">
           <div className="col-md-12">
@@ -62,7 +78,10 @@ function Total() {
               <div className="col-md-12">
                 <div className="row">
                   <div className="col-md-12 text-right border-bottom mb-5">
-                    <h3 className="text-black h4 text-uppercase" style={{fontWeight: 700}}>
+                    <h3
+                      className="text-black h4 text-uppercase"
+                      style={{ fontWeight: 700 }}
+                    >
                       Tổng giỏ hàng
                     </h3>
                   </div>

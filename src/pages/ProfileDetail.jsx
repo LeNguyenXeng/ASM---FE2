@@ -95,6 +95,9 @@ function ProfileDetail() {
                           data-mdb-button-init
                           data-mdb-ripple-init
                           className="btn btn-primary"
+                          style={{ background: "#dc3545", border: "#dc3545" }}
+
+                          
                           onClick={handleLogout}
                         >
                           Đăng xuất
@@ -104,6 +107,7 @@ function ProfileDetail() {
                           data-mdb-button-init
                           data-mdb-ripple-init
                           className="btn btn-outline-primary ms-1"
+                          style={{ background: "#198754", border: "#198754" }}
                         >
                           Admin Login
                         </button>

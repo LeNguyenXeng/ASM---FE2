@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import { useNavigate, useParams } from "react-router";
-import avt from "../assets/images/avtprofile.png";
-import "../assets/css/profile.css";
-import { profile } from "../service/auth";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate, useParams } from 'react-router';
+import avt from '../assets/images/avtprofile.png';
+import '../assets/css/profile.css';
+import { profile } from '../service/auth';
 
 function ProfileDetail() {
   const { id } = useParams();
@@ -19,7 +19,7 @@ function ProfileDetail() {
       setUsers(res);
     } catch (error) {
       console.log(error);
-      toast.error("Lỗi");
+      toast.error('Lỗi');
     }
   };
   useEffect(() => {
@@ -29,30 +29,30 @@ function ProfileDetail() {
   }, [id]);
 
   const handleOpenFB = () => {
-    window.open("https://www.facebook.com/xengdayy");
+    window.open('https://www.facebook.com/xengdayy');
   };
   const handleOpenBE = () => {
-    window.open("https://www.behance.net/lenguyenxeng");
+    window.open('https://www.behance.net/lenguyenxeng');
   };
   const handleOpenIG = () => {
-    window.open("https://www.instagram.com/tungthuyfake");
+    window.open('https://www.instagram.com/tungthuyfake');
   };
   const handleOpenGithub = () => {
-    window.open("https://github.com/LeNguyenXeng");
+    window.open('https://github.com/LeNguyenXeng');
   };
 
   const handleLogout = (id) => {
     try {
       axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`);
       setTimeout(() => {
-        navigate("/login");
+        navigate('/login');
       }, 1000);
-      toast.success("Đăng xuất thành công");
-      localStorage.clear("Token");
-      localStorage.clear("UserId");
+      toast.success('Đăng xuất thành công');
+      localStorage.clear('Token');
+      localStorage.clear('UserId');
     } catch (error) {
       console.log(error);
-      toast.error("Lỗi, không thể đăng xuất");
+      toast.error('Lỗi, không thể đăng xuất');
     }
   };
   const nextPage = () => {
@@ -63,7 +63,7 @@ function ProfileDetail() {
 
   return (
     <div>
-      <section style={{ backgroundColor: "#eee" }}>
+      <section style={{ backgroundColor: '#eee' }}>
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-4">
@@ -82,7 +82,7 @@ function ProfileDetail() {
                     data-mdb-button-init
                     data-mdb-ripple-init
                     className="btn btn-outline-primary mb-2 ms-1"
-                    style={{ background: "#0d6efd", border: "#0d6efd" }}
+                    style={{ background: '#0d6efd', border: '#0d6efd' }}
                   >
                     Cập nhật tài khoản
                   </button>
@@ -95,7 +95,7 @@ function ProfileDetail() {
                           data-mdb-button-init
                           data-mdb-ripple-init
                           className="btn btn-primary"
-                          style={{ background: "#dc3545", border: "#dc3545" }}
+                          style={{ background: '#dc3545', border: '#dc3545' }}
                           onClick={handleLogout}
                         >
                           Đăng xuất
@@ -105,7 +105,7 @@ function ProfileDetail() {
                           data-mdb-button-init
                           data-mdb-ripple-init
                           className="btn btn-outline-primary ms-1"
-                          style={{ background: "#198754", border: "#198754" }}
+                          style={{ background: '#198754', border: '#198754' }}
                         >
                           Admin Login
                         </button>
@@ -129,7 +129,7 @@ function ProfileDetail() {
                   <ul className="list-group list-group-flush rounded-3">
                     <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                         width={17}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
@@ -141,7 +141,7 @@ function ProfileDetail() {
                     </li>
                     <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                         width={16}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
@@ -154,7 +154,7 @@ function ProfileDetail() {
                     </li>
                     <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                         width={17}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 496 512"
@@ -167,7 +167,7 @@ function ProfileDetail() {
                     </li>
                     <li className="d-flex list-group-item align-items-center justify-content-between p-3">
                       <svg
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                         width={19}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 576 512"
@@ -226,7 +226,7 @@ function ProfileDetail() {
                     </div>
                     <div className="col-sm-9">
                       <p className="text-muted mb-0">
-                        {isAdmin ? "Admin" : "Thành viên"}
+                        {isAdmin ? 'Admin' : 'Thành viên'}
                       </p>
                     </div>
                   </div>

@@ -1,23 +1,18 @@
 import { useParams } from "react-router";
 import TextProductDetail from "./TextProductDetail";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import "../assets/css/productdetail.css";
+import { getProductDetail } from "../service/products";
 
 function ProductDetailCMP() {
-  
-  
-
   const { id } = useParams();
   const [products, setProducts] = useState([]);
 
   const getApi = async (id) => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/products/${id}`
-      );
-      setProducts(data);
+      const res = await getProductDetail(id);
+      setProducts(res);
     } catch (error) {
       console.log(error);
       toast.error("Không thể gọi API");

@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react";
 import Banner from "../components/Banner";
-import axios from "axios";
 import { toast } from "react-toastify";
 import Product from "../components/Product.jsx";
 import "../assets/css/product.css";
-
+import { getProducts } from "../service/products.js";
 
 function Shop() {
   const [products, setProducts] = useState([]);
 
   const getList = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/products`
-      );
-      setProducts(data);
+      const res = await getProducts();
+      setProducts(res);
     } catch (error) {
       console.log(error);
       toast.success("Lỗi");

@@ -2,10 +2,10 @@
   "products": [
     {
       "id": 1,
-      "name": "Sofa Giường MARGARET",
+      "name": "Ghế ăn - Ghế cafe XDAILY - Eames chair",
       "price": "9360000",
       "description": "Kích thước (DxR):\n1800*850mm – Giá: 9,360,000 VND\n2000*850mm – Giá: 10,400,000 VND\n2200*850mm – Giá: 11,440,000 VND",
-      "image": "https://png.pngtree.com/png-clipart/20240831/original/pngtree-sofa-set-png-image_15897893.png"
+      "image": "https://product.hstatic.net/1000400963/product/ghe-an-xdaily-eames-chair__1__c073b3c9cb9c49b48b92f957bff0c3e3_master.jpg"
     },
     {
       "id": 2,
@@ -16,17 +16,17 @@
     },
     {
       "id": 3,
-      "name": "Sofas - AJ Maison",
+      "name": "Ghế ăn bọc da cao cấp XDAILY - ROM chair",
       "price": "30000000",
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://khothietke.net/wp-content/uploads/2021/05/PNGKhothietke.net-03087.png"
+      "image": "https://product.hstatic.net/1000400963/product/ghe-an-cao-cap-boc-da-xdaily-rom-chair__2__96b0e4e5a13b4e83903c31fb3cb48259_master.jpg"
     },
     {
       "id": 4,
-      "name": "Modern Chair",
+      "name": "Ghế ăn, ghế cafe XDAILY - KONY chair",
       "price": "15000000",
       "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-      "image": "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-Download-Free-PNG.png"
+      "image": "https://product.hstatic.net/1000400963/product/ghe-an-cafe-xdaily-kony-chair-_1__b3ec53bb598f4bd18475b6fcbfee30f0_master.jpg"
     },
     {
       "id": 5,
@@ -105,6 +105,15 @@
       "phone": "0396180619",
       "is_admin": false,
       "id": 8
+    },
+    {
+      "email": "tungdayne@gmail.com",
+      "password": "$2a$10$aqmFKWrYVkh5ZTdOqNwPsOpCY3yNV1MS2O7dckMNA2Jxg612ooXJe",
+      "name": "Tiến Bịp",
+      "address": "Thanh Hóa",
+      "phone": "0396180619",
+      "is_admin": false,
+      "id": 9
     }
   ]
 }

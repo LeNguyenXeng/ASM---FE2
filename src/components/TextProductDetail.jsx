@@ -1,28 +1,38 @@
-import { useDispatch } from "react-redux";
-import { Link } from "react-router";
-import { addToCart } from "../redux/action";
-import { toast } from "react-toastify";
-import { useState } from "react";
-import formatCurrency from "../consts/formatCurrency.js";
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { addToCart } from '../redux/action';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
+import formatCurrency from '../consts/formatCurrency.js';
+import useAuthen from '../hooks/useAuthen.jsx';
 
 function TextProductDetail({ products }) {
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const isAuthen = useAuthen();
+  const navigate = useNavigate();
 
   const handleOnChange = (event) => {
     setQuantity(event.target.value);
   };
 
-  const dispatch = useDispatch();
-
   const handleAddToCart = (event) => {
-    const productItem = {
-      ...products,
-      quantity: Number(event.target.value),
-    };
     event.stopPropagation();
     event.preventDefault();
+
+    if (!isAuthen) {
+      toast.warning('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!');
+      navigate('/login');
+      return;
+    }
+
+    const productItem = {
+      ...products,
+      quantity: Number(quantity),
+    };
+
     dispatch(addToCart(productItem));
-    toast.success("Đã thêm vào giỏ hàng");
+    toast.success('Đã thêm vào giỏ hàng');
   };
 
   return (
@@ -40,7 +50,7 @@ function TextProductDetail({ products }) {
         </label>
         <input
           type="number"
-          min={0}
+          min={1}
           value={quantity}
           className="form-control"
           style={{ width: 80 }}
@@ -52,11 +62,12 @@ function TextProductDetail({ products }) {
       <button
         onClick={handleAddToCart}
         className="btn btn-primary shadow-0"
-        disabled={quantity == 0}
+        disabled={quantity <= 0}
       >
         Thêm vào giỏ hàng
       </button>
     </div>
   );
 }
+
 export default TextProductDetail;

@@ -1,25 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { Link, Route, Routes, useNavigate, useParams } from "react-router";
-import "../../assets/css/adminheader.css";
-import $ from "jquery";
-import ListProduct from "../../pages/admin/ListProduct";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from 'react';
+import { Link, Route, Routes, useNavigate, useParams } from 'react-router';
+import '../../assets/css/adminheader.css';
+import $ from 'jquery';
+import ListProduct from '../../pages/admin/ListProduct';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 
 function UpdateAccountPage() {
   const { id } = useParams();
 
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   const getList = async (id) => {
     try {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/users/${id}`
       );
-      reset(data);
+      reset({
+        ...data,
+        is_admin: data.is_admin ? 'true' : 'false',
+      });
     } catch (error) {
       console.log(error);
-      toast.error("Lỗi");
+      toast.error('Lỗi');
     }
   };
 
@@ -29,55 +37,58 @@ function UpdateAccountPage() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.put(`${import.meta.env.VITE_BASE_URL}/users/${id}`, data);
-      navigate("/admin/listaccount");
-      toast.success("Cập nhật thành công");
+      await axios.put(`${import.meta.env.VITE_BASE_URL}/users/${id}`, {
+        ...data,
+        is_admin: data.is_admin === 'true',
+      });
+      navigate('/admin/listaccount');
+      toast.success('Cập nhật thành công');
     } catch (error) {
       console.log(error);
-      toast.error("Không thể cập nhật");
+      toast.error('Không thể cập nhật');
     }
   };
 
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
-    const id = localStorage.getItem("UserId");
+    const id = localStorage.getItem('UserId');
     setUserId(id);
   }, []);
   const handleLogout = (id) => {
     try {
       axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`);
       setTimeout(() => {
-        navigate("/login");
+        navigate('/login');
       }, 1000);
-      toast.success("Đăng xuất thành công");
-      localStorage.clear("Token");
-      localStorage.clear("UserId");
+      toast.success('Đăng xuất thành công');
+      localStorage.clear('Token');
+      localStorage.clear('UserId');
     } catch (error) {
       console.log(error);
-      toast.error("Lỗi, không thể đăng xuất");
+      toast.error('Lỗi, không thể đăng xuất');
     }
   };
   useEffect(() => {
-    const mobileScreen = window.matchMedia("(max-width: 990px)");
+    const mobileScreen = window.matchMedia('(max-width: 990px)');
 
     const handleDropdownToggle = () => {
-      $(".dashboard-nav-dropdown-toggle").click(function () {
+      $('.dashboard-nav-dropdown-toggle').click(function () {
         $(this)
-          .closest(".dashboard-nav-dropdown")
-          .toggleClass("show")
-          .find(".dashboard-nav-dropdown")
-          .removeClass("show");
-        $(this).parent().siblings().removeClass("show");
+          .closest('.dashboard-nav-dropdown')
+          .toggleClass('show')
+          .find('.dashboard-nav-dropdown')
+          .removeClass('show');
+        $(this).parent().siblings().removeClass('show');
       });
     };
 
     const handleMenuToggle = () => {
-      $(".menu-toggle").click(function () {
+      $('.menu-toggle').click(function () {
         if (mobileScreen.matches) {
-          $(".dashboard-nav").toggleClass("mobile-show");
+          $('.dashboard-nav').toggleClass('mobile-show');
         } else {
-          $(".dashboard").toggleClass("dashboard-compact");
+          $('.dashboard').toggleClass('dashboard-compact');
         }
       });
     };
@@ -87,8 +98,8 @@ function UpdateAccountPage() {
 
     // Clean up the event listeners when the component unmounts
     return () => {
-      $(".dashboard-nav-dropdown-toggle").off("click");
-      $(".menu-toggle").off("click");
+      $('.dashboard-nav-dropdown-toggle').off('click');
+      $('.menu-toggle').off('click');
     };
   }, []);
 
@@ -100,7 +111,7 @@ function UpdateAccountPage() {
             <a href="#!" className="menu-toggle">
               <i className="fa fa-align-left" />
             </a>
-            <Link to={"/admin/home"} className="brand-logo">
+            <Link to={'/admin/home'} className="brand-logo">
               <div className="header-icon-nav">
                 <i className="fa fa-user-secret" />
               </div>
@@ -120,20 +131,20 @@ function UpdateAccountPage() {
                 className="dashboard-nav-dropdown-toggle dashboard-nav-item"
               >
                 <div className="icon-header">
-                  {" "}
+                  {' '}
                   <i className="fa fa-inbox" />
                 </div>
                 <div className="text-header">Quản lý sản phẩm</div>
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                  to={"/admin/listproduct"}
+                  to={'/admin/listproduct'}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách sản phẩm
                 </Link>
                 <Link
-                  to={"/admin/addproduct"}
+                  to={'/admin/addproduct'}
                   className="dashboard-nav-dropdown-item"
                 >
                   Thêm sản phẩm
@@ -152,7 +163,7 @@ function UpdateAccountPage() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                  to={"/admin/listaccount"}
+                  to={'/admin/listaccount'}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản
@@ -204,84 +215,132 @@ function UpdateAccountPage() {
                 <div className="table-responsive">
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label"
-                      >
+                      <label htmlFor="name" className="form-label">
                         Họ tên
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        {...register("name")}
+                        id="name"
+                        {...register('name', {
+                          required: 'Không được bỏ trống',
+                        })}
                       />
+                      {errors?.name && (
+                        <small className="text-danger">
+                          {errors.name.message}
+                        </small>
+                      )}
                     </div>
                     <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label"
-                      >
+                      <label htmlFor="email" className="form-label">
                         Email
                       </label>
                       <input
-                        type="text"
+                        type="email" // Changed to type email
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        {...register("email")}
+                        id="email"
+                        {...register('email', {
+                          required: 'Không được bỏ trống',
+                          pattern: {
+                            value:
+                              /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                            message: 'Email không hợp lệ',
+                          },
+                        })}
                       />
+                      {errors?.email && (
+                        <small className="text-danger">
+                          {errors.email.message}
+                        </small>
+                      )}
                     </div>
                     <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label"
-                      >
+                      <label htmlFor="password" className="form-label">
                         Mật Khẩu
                       </label>
                       <input
-                        type="text"
+                        type="password" // Changed to type password
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        {...register("password")}
+                        id="password"
+                        {...register('password', {
+                          required: 'Không được bỏ trống',
+                          minLength: {
+                            value: 6,
+                            message: 'Mật khẩu phải có ít nhất 6 ký tự',
+                          },
+                        })}
                       />
+                      {errors?.password && (
+                        <small className="text-danger">
+                          {errors.password.message}
+                        </small>
+                      )}
                     </div>
                     <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label"
-                      >
+                      <label htmlFor="phone" className="form-label">
                         Số điện thoại
                       </label>
                       <input
                         type="number"
-                        min={0}
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        {...register("phone")}
+                        id="phone"
+                        {...register('phone', {
+                          required: 'Không được bỏ trống',
+                          minLength: {
+                            value: 10,
+                            message: 'Số điện thoại phải có ít nhất 10 chữ số',
+                          },
+                          maxLength: {
+                            value: 15,
+                            message: 'Số điện thoại không được quá 15 chữ số',
+                          },
+                          pattern: {
+                            value: /^[0-9]*$/,
+                            message: 'Số điện thoại không hợp lệ',
+                          },
+                        })}
                       />
+                      {errors?.phone && (
+                        <small className="text-danger">
+                          {errors.phone.message}
+                        </small>
+                      )}
                     </div>
                     <div className="mb-3">
-                      <label
-                        htmlFor="exampleInputEmail1"
-                        className="form-label"
-                      >
+                      <label htmlFor="address" className="form-label">
                         Địa chỉ
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        {...register("address")}
+                        id="address"
+                        {...register('address', {
+                          required: 'Không được bỏ trống',
+                        })}
                       />
+                      {errors?.address && (
+                        <small className="text-danger">
+                          {errors.address.message}
+                        </small>
+                      )}
                     </div>
 
-                    <button className="btn btn-primary btn-icon-split">
-                      Cập Nhật Tài Khoản
+                    <div className="mb-3">
+                      <label htmlFor="is_admin" className="form-label">
+                        Quyền hạn
+                      </label>
+                      <select
+                        className="form-select"
+                        id="is_admin"
+                        {...register('is_admin')}
+                      >
+                        <option value="true">Admin</option>
+                        <option value="false">Member</option>
+                      </select>
+                    </div>
+                    <button type="submit" className="btn btn-primary">
+                      Cập nhật tài khoản
                     </button>
                   </form>
                 </div>

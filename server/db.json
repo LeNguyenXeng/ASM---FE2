@@ -80,18 +80,9 @@
   ],
   "users": [
     {
-      "email": "tungday@gmail.com",
-      "password": "$2a$10$xbZ8iHJXduP1e.qR1E9Zm.XQctT4.yCiPjaTHUJE4YzyeeZnlImR2",
-      "name": "Tùng Lê Nguyên",
-      "id": 5,
-      "is_admin": true,
-      "phone": "0396180619",
-      "address": "Thanh Hóa"
-    },
-    {
       "email": "tungk@gmail.com",
-      "password": "$2a$10$rR9gSgdThSZpNJhIfwge0.o/i8cwl4sD24lGXMeEp0lUtk4fs3T5O",
-      "name": "Lê Nguyên Tùng",
+      "password": "$2a$10$Kfn4Ex05ZVLru5YTC58B7ONsQ.WMwZ71aOAwCX7XPJ7KFYqAZOzzO",
+      "name": "XengDayyy",
       "address": "Hà Nội",
       "phone": "0396180619",
       "id": 6,
@@ -99,7 +90,7 @@
     },
     {
       "email": "tungxeng@gmail.com",
-      "password": "$2a$10$Zg7p.u4VyG.W7lH9Rrjuf.fK.2Se5WVDhcklWvJPPSW5G4DSY4n52",
+      "password": "$2a$10$xmfx/JanVpNs9M1lxNZHVOzEzzhTkYUKYa7Q/5qqATkLL36PebQ5G",
       "name": "X$ng",
       "address": "Thanh Hóa",
       "phone": "0396180619",
@@ -108,8 +99,8 @@
     },
     {
       "email": "tungdayne@gmail.com",
-      "password": "$2a$10$aqmFKWrYVkh5ZTdOqNwPsOpCY3yNV1MS2O7dckMNA2Jxg612ooXJe",
-      "name": "Tiến Bịp",
+      "password": "$2a$10$EcL2z4L6m59HrxQNtMRi5OqOKkx3rQfHMl5kEAV84ibahUUKGe0Z2",
+      "name": "ALo",
       "address": "Thanh Hóa",
       "phone": "0396180619",
       "is_admin": false,

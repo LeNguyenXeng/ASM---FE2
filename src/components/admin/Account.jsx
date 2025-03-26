@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router";
-import "../../assets/css/adminheader.css";
-import "../../assets/css/admincontent.css";
-import $ from "jquery";
-import ListProduct from "../../pages/admin/ListProduct";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import React, { useEffect, useState } from 'react';
+import { Link, Route, Routes, useNavigate } from 'react-router';
+import '../../assets/css/adminheader.css';
+import '../../assets/css/admincontent.css';
+import $ from 'jquery';
+import ListProduct from '../../pages/admin/ListProduct';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 function AccountPage() {
   const [users, setUsers] = useState([]);
@@ -19,7 +19,7 @@ function AccountPage() {
       setUsers(data);
     } catch (error) {
       console.error(
-        "API call failed:",
+        'API call failed:',
         error.response ? error.response.data : error.message
       );
     }
@@ -27,9 +27,9 @@ function AccountPage() {
 
   const handleDelete = async (id) => {
     try {
-      if (confirm("Bạn có muốn xóa không?")) {
+      if (confirm('Bạn có muốn xóa không?')) {
         await axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`);
-        toast.success("Xóa thành công");
+        toast.success('Xóa thành công');
         getListUser();
       }
     } catch (error) {
@@ -44,43 +44,43 @@ function AccountPage() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   useEffect(() => {
-    const id = localStorage.getItem("UserId");
+    const id = localStorage.getItem('UserId');
     setUserId(id);
   }, []);
   const handleLogout = (id) => {
     try {
       axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`);
       setTimeout(() => {
-        navigate("/login");
+        navigate('/login');
       }, 1000);
-      toast.success("Đăng xuất thành công");
-      localStorage.clear("Token");
-      localStorage.clear("UserId");
+      toast.success('Đăng xuất thành công');
+      localStorage.clear('Token');
+      localStorage.clear('UserId');
     } catch (error) {
       console.log(error);
-      toast.error("Lỗi, không thể đăng xuất");
+      toast.error('Lỗi, không thể đăng xuất');
     }
   };
   useEffect(() => {
-    const mobileScreen = window.matchMedia("(max-width: 990px)");
+    const mobileScreen = window.matchMedia('(max-width: 990px)');
 
     const handleDropdownToggle = () => {
-      $(".dashboard-nav-dropdown-toggle").click(function () {
+      $('.dashboard-nav-dropdown-toggle').click(function () {
         $(this)
-          .closest(".dashboard-nav-dropdown")
-          .toggleClass("show")
-          .find(".dashboard-nav-dropdown")
-          .removeClass("show");
-        $(this).parent().siblings().removeClass("show");
+          .closest('.dashboard-nav-dropdown')
+          .toggleClass('show')
+          .find('.dashboard-nav-dropdown')
+          .removeClass('show');
+        $(this).parent().siblings().removeClass('show');
       });
     };
 
     const handleMenuToggle = () => {
-      $(".menu-toggle").click(function () {
+      $('.menu-toggle').click(function () {
         if (mobileScreen.matches) {
-          $(".dashboard-nav").toggleClass("mobile-show");
+          $('.dashboard-nav').toggleClass('mobile-show');
         } else {
-          $(".dashboard").toggleClass("dashboard-compact");
+          $('.dashboard').toggleClass('dashboard-compact');
         }
       });
     };
@@ -90,8 +90,8 @@ function AccountPage() {
 
     // Clean up the event listeners when the component unmounts
     return () => {
-      $(".dashboard-nav-dropdown-toggle").off("click");
-      $(".menu-toggle").off("click");
+      $('.dashboard-nav-dropdown-toggle').off('click');
+      $('.menu-toggle').off('click');
     };
   }, []);
 
@@ -103,7 +103,7 @@ function AccountPage() {
             <a href="#!" className="menu-toggle">
               <i className="fa fa-align-left" />
             </a>
-            <Link to={"/admin/home"} className="brand-logo">
+            <Link to={'/admin/home'} className="brand-logo">
               <div className="header-icon-nav">
                 <i className="fa fa-user-secret" />
               </div>
@@ -123,20 +123,20 @@ function AccountPage() {
                 className="dashboard-nav-dropdown-toggle dashboard-nav-item"
               >
                 <div className="icon-header">
-                  {" "}
+                  {' '}
                   <i className="fa fa-inbox" />
                 </div>
                 <div className="text-header">Quản lý sản phẩm</div>
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                  to={"/admin/listproduct"}
+                  to={'/admin/listproduct'}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách sản phẩm
                 </Link>
                 <Link
-                  to={"/admin/addproduct"}
+                  to={'/admin/addproduct'}
                   className="dashboard-nav-dropdown-item"
                 >
                   Thêm sản phẩm
@@ -155,7 +155,7 @@ function AccountPage() {
               </a>
               <div className="dashboard-nav-dropdown-menu">
                 <Link
-                  to={"/admin/listaccount"}
+                  to={'/admin/listaccount'}
                   className="dashboard-nav-dropdown-item"
                 >
                   Danh sách tài khoản
@@ -218,6 +218,7 @@ function AccountPage() {
                         <th>Email</th>
                         <th>Địa chỉ</th>
                         <th>Số điện thoại</th>
+                        <th>Quyền hạn</th>
                         <th>Hành động</th>
                       </tr>
                     </thead>
@@ -229,8 +230,16 @@ function AccountPage() {
                           <td>{item.email}</td>
                           <td>{item.address}</td>
                           <td>{item.phone}</td>
+                          <td
+                            className={
+                              item.is_admin ? 'text-danger' : 'text-success'
+                            }
+                          >
+                            {item.is_admin ? 'Admin' : 'Member'}
+                          </td>
+
                           <td>
-                            <div style={{ display: "flex", gap: 5 }}>
+                            <div style={{ display: 'flex', gap: 5 }}>
                               <Link
                                 to={`/admin/updateaccount/${item.id}`}
                                 className="button-circle-edit"

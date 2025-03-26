@@ -58,6 +58,9 @@ function ProfileDetail() {
   const nextPage = () => {
     navigate(`/updateaccount/${users.id}`);
   };
+  const adminLogin = () => {
+    navigate('/admin/home');
+  };
 
   const isAdmin = users.is_admin;
 
@@ -101,6 +104,7 @@ function ProfileDetail() {
                           Đăng xuất
                         </button>
                         <button
+                          onClick={adminLogin}
                           type="button"
                           data-mdb-button-init
                           data-mdb-ripple-init

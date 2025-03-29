@@ -59,23 +59,33 @@
   ],
   "orders": [
     {
-      "id": 1,
       "customer": {
-        "name": "Nguyễn Văn A",
-        "email": "nguyenvana@gmail.com",
-        "phone": "0123456789",
-        "address": "123 Đường ABC, Quận 1, TP.HCM"
+        "name": "Lê Nguyên Tùng",
+        "email": "tunglnph49038@gmail.com",
+        "phone": "hbjn",
+        "address": "ádasd",
+        "paymentMethod": "cod"
       },
-      "products": [
+      "items": [
         {
-          "productId": 1,
-          "name": "Sofa da cao cấp",
-          "price": 15000000,
-          "quantity": 2
+          "id": 2,
+          "name": "Ghế Ăn Vải Nỉ Bizu",
+          "price": 25000000,
+          "description": "Ghế bọc vải là một trong những sản phẩm nổi bật của Furnist. Với thiết kế ấn tượng cùng công nghệ sản xuất tiên tiến, đảm bảo về công năng sử dụng. Sản phẩm là sự thành công để mang đến không gian vẻ đẹp sang trọng, đa năng trong cách ứng dụng và an toàn cho người sử dụng.",
+          "image": "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-PNG-HD-Quality.png",
+          "quantity": 3
+        },
+        {
+          "id": 3,
+          "name": "Ghế ăn bọc da cao cấp XDAILY - ROM chair",
+          "price": "30000000",
+          "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+          "image": "https://product.hstatic.net/1000400963/product/ghe-an-cao-cap-boc-da-xdaily-rom-chair__2__96b0e4e5a13b4e83903c31fb3cb48259_master.jpg",
+          "quantity": 1
         }
       ],
-      "total": 30000000,
-      "status": "Đang xử lý"
+      "totalPrice": 105000000,
+      "id": 1
     }
   ],
   "users": [

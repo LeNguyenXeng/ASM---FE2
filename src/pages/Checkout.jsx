@@ -2,13 +2,41 @@ import React from 'react';
 import '../assets/css/checkout.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faDollarSign } from '@fortawesome/free-solid-svg-icons';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import formatCurrency from '../consts/formatCurrency';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+
 function Checkout() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { cartItems, totalPrice } = location.state || {
     cartItems: [],
     totalPrice: 0,
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const orderData = {
+      customer: data,
+      items: cartItems,
+      totalPrice,
+    };
+
+    try {
+      await axios.post('http://localhost:3000/orders', orderData);
+      toast.success('Đặt hàng thành công');
+      navigate('/shop');
+    } catch (error) {
+      console.log(error);
+      toast.error('Đã xảy ra lỗi, vui lòng thử lại!');
+    }
   };
 
   return (
@@ -17,157 +45,137 @@ function Checkout() {
         <div className="col-xl-8">
           <div className="card">
             <div className="card-body">
-              <ol className="activity-checkout mb-0 px-4 mt-3">
-                <li className="checkout-item">
-                  <div className="avatar checkout-icon p-1">
-                    <div className="avatar-title rounded-circle">
-                      <FontAwesomeIcon
-                        style={{ fontSize: 17 }}
-                        icon={faInfoCircle}
-                      />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <ol className="activity-checkout mb-0 px-4 mt-3">
+                  <li className="checkout-item">
+                    <div className="avatar checkout-icon p-1">
+                      <div className="avatar-title rounded-circle">
+                        <FontAwesomeIcon
+                          style={{ fontSize: 17 }}
+                          icon={faInfoCircle}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="feed-item-list">
-                    <div>
+                    <div className="feed-item-list">
                       <h5 className="font-size-16 mb-1">Thông tin</h5>
-                      <p className="text-muted text-truncate mb-4">
+                      <p className="text-muted mb-4">
                         Vui lòng nhập thông tin thanh toán
                       </p>
-                      <div className="mb-3">
-                        <form>
-                          <div>
-                            <div className="row">
-                              <div className="col-lg-4">
-                                <div className="mb-3">
-                                  <label
-                                    className="form-label"
-                                    htmlFor="billing-name"
-                                  >
-                                    Họ tên:
-                                  </label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="billing-name"
-                                    placeholder="Nhập họ tên"
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-lg-4">
-                                <div className="mb-3">
-                                  <label
-                                    className="form-label"
-                                    htmlFor="billing-email-address"
-                                  >
-                                    Email:
-                                  </label>
-                                  <input
-                                    type="email"
-                                    className="form-control"
-                                    id="billing-email-address"
-                                    placeholder="Nhập email"
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-lg-4">
-                                <div className="mb-3">
-                                  <label
-                                    className="form-label"
-                                    htmlFor="billing-phone"
-                                  >
-                                    Số điện thoại:
-                                  </label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="billing-phone"
-                                    placeholder="Nhập số điện thoại"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="mb-3">
-                              <label
-                                className="form-label"
-                                htmlFor="billing-address"
-                              >
-                                Địa Chỉ:
-                              </label>
-                              <textarea
-                                className="form-control"
-                                id="billing-address"
-                                rows={3}
-                                placeholder="Nhập địa chỉ"
-                              />
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="checkout-item">
-                  <div className="avatar checkout-icon p-1">
-                    <div className="avatar-title rounded-circle">
-                      <FontAwesomeIcon
-                        style={{ fontSize: 17 }}
-                        icon={faDollarSign}
-                      />
-                    </div>
-                  </div>
-                  <div className="feed-item-list">
-                    <div>
-                      <h5 className="font-size-16 mb-1">Thanh Toán</h5>
-                      <p className="text-muted text-truncate mb-4">
-                        Vui lòng chọn phương thức thanh toán
-                      </p>
-                    </div>
-                    <div>
-                      <h5 className="font-size-14 mb-3">
-                        Phương thức thanh toán :
-                      </h5>
-                      <div className="col-lg-3 col-xl-6">
-                        <div className="radio-input">
-                          <div>
-                            <input type="radio" />
-                          </div>
-                          <span>Thanh Toán Khi Nhận Hàng</span>
+                      <div className="row">
+                        <div className="col-lg-4">
+                          <label className="form-label">Họ tên:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nhập họ tên"
+                            {...register('name', {
+                              required: 'Vui lòng nhập họ tên',
+                            })}
+                          />
+                          {errors.name && (
+                            <p className="text-danger">{errors.name.message}</p>
+                          )}
+                        </div>
+                        <div className="col-lg-4">
+                          <label className="form-label">Email:</label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Nhập email"
+                            {...register('email', {
+                              required: 'Vui lòng nhập email',
+                            })}
+                          />
+                          {errors.email && (
+                            <p className="text-danger">
+                              {errors.email.message}
+                            </p>
+                          )}
+                        </div>
+                        <div className="col-lg-4">
+                          <label className="form-label">Số điện thoại:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nhập số điện thoại"
+                            {...register('phone', {
+                              required: 'Vui lòng nhập số điện thoại',
+                            })}
+                          />
+                          {errors.phone && (
+                            <p className="text-danger">
+                              {errors.phone.message}
+                            </p>
+                          )}
                         </div>
                       </div>
+                      <label className="form-label mt-3">Địa chỉ:</label>
+                      <textarea
+                        className="form-control"
+                        rows={3}
+                        placeholder="Nhập địa chỉ"
+                        {...register('address', {
+                          required: 'Vui lòng nhập địa chỉ',
+                        })}
+                      />
+                      {errors.address && (
+                        <p className="text-danger">{errors.address.message}</p>
+                      )}
                     </div>
-                  </div>
-                </li>
-              </ol>
+                  </li>
+
+                  <li className="checkout-item">
+                    <div className="avatar checkout-icon p-1">
+                      <div className="avatar-title rounded-circle">
+                        <FontAwesomeIcon
+                          style={{ fontSize: 17 }}
+                          icon={faDollarSign}
+                        />
+                      </div>
+                    </div>
+                    <div className="feed-item-list">
+                      <h5 className="font-size-16 mb-1">Thanh Toán</h5>
+                      <p className="text-muted mb-4">
+                        Vui lòng chọn phương thức thanh toán
+                      </p>
+                      <h5 className="font-size-14 mb-3">
+                        Phương thức thanh toán:
+                      </h5>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          value="cod"
+                          {...register('paymentMethod', {
+                            required: 'Vui lòng chọn phương thức thanh toán',
+                          })}
+                        />
+                        <label className="form-check-label">
+                          Thanh Toán Khi Nhận Hàng
+                        </label>
+                      </div>
+                      {errors.paymentMethod && (
+                        <p className="text-danger">
+                          {errors.paymentMethod.message}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                </ol>
+                <div className="text-end mt-3">
+                  <button
+                    type="submit"
+                    className="btn btn-success"
+                    style={{ background: '#3b5d50', border: '#3b5d50' }}
+                  >
+                    Thanh Toán
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
-          <div className="row my-4">
-            <div className="col">
-              <Link
-                to={'/shop'}
-                className="btn btn-link "
-                style={{
-                  background: '#6c757d',
-                  border: '#6c757d',
-                  color: 'white',
-                }}
-              >
-                Tiếp tục mua sắm
-              </Link>
-            </div>{' '}
-            <div className="col">
-              <div className="text-end mt-2 mt-sm-0">
-                <a
-                  href="#"
-                  className="btn btn-success"
-                  style={{ background: '#3b5d50', border: '#3b5d50' }}
-                >
-                  Thanh Toán
-                </a>
-              </div>
-            </div>{' '}
-          </div>{' '}
         </div>
+
         <div className="col-xl-4">
           <div className="card checkout-order-summary">
             <div className="card-body">
@@ -186,25 +194,21 @@ function Checkout() {
                 <table className="table table-centered mb-0 table-nowrap">
                   <tbody>
                     {cartItems.map((item) => (
-                      <tr>
-                        <td scope="row">
+                      <tr key={item.id}>
+                        <td>
                           <Link
                             to={`/product-detail/${item.id}`}
                             className="text-dark"
                           >
                             <img
                               src={item.image}
-                              alt="product-img"
-                              title="product-img"
+                              alt={item.name}
                               className="avatar-lg rounded"
                             />
                           </Link>
                         </td>
                         <td>
-                          <h5
-                            className="font-size-16 text-truncate"
-                            style={{ width: 140 }}
-                          >
+                          <h5 className="font-size-16">
                             <Link
                               to={`/product-detail/${item.id}`}
                               className="text-dark"
@@ -213,13 +217,6 @@ function Checkout() {
                             </Link>
                           </h5>
                           <p className="text-muted mb-0">
-                            <i className="bx bxs-star text-warning" />
-                            <i className="bx bxs-star text-warning" />
-                            <i className="bx bxs-star text-warning" />
-                            <i className="bx bxs-star text-warning" />
-                            <i className="bx bxs-star-half text-warning" />
-                          </p>
-                          <p className="text-muted mb-0 mt-1">
                             {formatCurrency(item.price)} x {item.quantity}
                           </p>
                         </td>
@@ -235,8 +232,8 @@ function Checkout() {
           </div>
         </div>
       </div>
-      {/* end row */}
     </div>
   );
 }
+
 export default Checkout;

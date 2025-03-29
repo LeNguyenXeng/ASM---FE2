@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router";
-import "../assets/css/login.css";
-import login from "../assets/images/login.jpg";
-import homely from "../assets/images/homely-logo.png";
-import { useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
-import { toast } from "react-toastify";
-import { loginAccount } from "../service/auth";
+import { Link, useNavigate } from 'react-router';
+import '../assets/css/login.css';
+import login from '../assets/images/login.jpg';
+import homely from '../assets/images/homely-logo.png';
+import { useForm } from 'react-hook-form';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { loginAccount } from '../service/auth';
 
 function Login() {
   const navigate = useNavigate();
@@ -20,21 +20,19 @@ function Login() {
   const onsubmit = async (data) => {
     try {
       const res = await loginAccount(data);
-      console.log(res.user.id);
-
       setTimeout(() => {
-        navigate("/");
+        navigate('/');
       }, 1000);
-      toast.success("Đăng nhập thành công");
-      localStorage.setItem("Token", res.accessToken);
-      localStorage.setItem("UserId", res.user.id);
+      toast.success('Đăng nhập thành công');
+      localStorage.setItem('Token', res.accessToken);
+      localStorage.setItem('UserId', res.user.id);
     } catch (error) {
       console.log(error);
       reset();
       setTimeout(() => {
-        setFocus("email");
+        setFocus('email');
       }, 0);
-      toast.error("Email hoặc mật khẩu không đúng!");
+      toast.error('Email hoặc mật khẩu không đúng!');
     }
   };
 
@@ -88,12 +86,12 @@ function Login() {
                                   id="email"
                                   placeholder="name@example.com"
                                   required
-                                  {...register("email", {
-                                    required: "Không được bỏ trống Email",
+                                  {...register('email', {
+                                    required: 'Không được bỏ trống Email',
                                     pattern: {
                                       value:
                                         /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                      message: "Địa chỉ email không hợp lệ",
+                                      message: 'Địa chỉ email không hợp lệ',
                                     },
                                   })}
                                 />
@@ -116,11 +114,11 @@ function Login() {
                                   id="password"
                                   placeholder="Password"
                                   required
-                                  {...register("password", {
-                                    required: "Không được bỏ trống mật khẩu",
+                                  {...register('password', {
+                                    required: 'Không được bỏ trống mật khẩu',
                                     minLength: {
                                       value: 6,
-                                      message: "Mật khẩu phải ít nhất 6 kí tự",
+                                      message: 'Mật khẩu phải ít nhất 6 kí tự',
                                     },
                                   })}
                                 />
@@ -139,7 +137,7 @@ function Login() {
                             </div>
                             <div className="col-12">
                               <Link
-                                to={"/register"}
+                                to={'/register'}
                                 className="link-secondary text-decoration-none"
                               >
                                 Bạn chưa có tài khoản?

@@ -1,13 +1,13 @@
-import { useSelector, useDispatch } from "react-redux"; // Nhập useDispatch
-import ProductCart from "./ProductCart";
-import formatCurrency from "../consts/formatCurrency";
-import { clearCart } from "../redux/action";
+import { useSelector, useDispatch } from 'react-redux'; // Nhập useDispatch
+import ProductCart from './ProductCart';
+import formatCurrency from '../consts/formatCurrency';
+import { clearCart } from '../redux/action';
+import { useNavigate } from 'react-router';
 
 function Total() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItem);
-  console.log(cartItems);
-
+  const navigate = useNavigate();
   const totalPrice = () => {
     return cartItems.reduce((accumulator, currentValue) => {
       return accumulator + (currentValue.quantity * currentValue.price || 0);
@@ -16,6 +16,14 @@ function Total() {
 
   const handleDeleteCart = () => {
     dispatch(clearCart());
+  };
+
+  const handleCheckout = () => {
+    if (cartItems.length > 0) {
+      navigate('/checkout', { state: { cartItems, totalPrice: totalPrice() } });
+    } else {
+      alert('Giỏ hàng của bạn đang trống!');
+    }
   };
 
   return (
@@ -41,11 +49,11 @@ function Total() {
                 <tbody>
                   {cartItems.length === 0 ? (
                     <tr>
-                      <td colSpan={6} style={{ textAlign: "center" }}>
+                      <td colSpan={6} style={{ textAlign: 'center' }}>
                         <span
                           style={{
-                            fontSize: "15px",
-                            color: "red",
+                            fontSize: '15px',
+                            color: 'red',
                             fontWeight: 500,
                           }}
                         >
@@ -62,10 +70,10 @@ function Total() {
               </table>
             </div>
           </form>
-          <div style={{ textAlign: "end" }}>
+          <div style={{ textAlign: 'end' }}>
             <button
               className="btn btn-black btn-sm py-3 btn-block"
-              style={{ background: "#dc3545", border: "#dc3545" }}
+              style={{ background: '#dc3545', border: '#dc3545' }}
               onClick={handleDeleteCart} // Thêm sự kiện click
             >
               Xóa giỏ hàng
@@ -93,14 +101,17 @@ function Total() {
                     </span>
                   </div>
                   <div className="col-md-6 text-right">
-                    <strong style={{ fontSize: 20, color: "rgb(210, 0, 0)" }}>
+                    <strong style={{ fontSize: 20, color: 'rgb(210, 0, 0)' }}>
                       {formatCurrency(totalPrice())}
                     </strong>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-12">
-                    <button className="btn btn-black btn-lg py-3 btn-block">
+                    <button
+                      className="btn btn-black btn-lg py-3 btn-block"
+                      onClick={handleCheckout}
+                    >
                       Thanh Toán
                     </button>
                   </div>

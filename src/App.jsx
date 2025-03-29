@@ -20,6 +20,7 @@ import UpdateAccountAdmin from './pages/admin/UpdateAccountPage';
 import ProfileAdmin from './pages/admin/ProfileAdmin';
 import Layout from './components/Layout.jsx';
 import useAuthen from './hooks/useAuthen.jsx';
+import Checkout from './pages/Checkout.jsx';
 
 const withLayout = (Component) => (
   <Layout>
@@ -46,6 +47,8 @@ const routerConfig = [
     path: '/shopping-cart',
     element: <PrivateRoute element={withLayout(ShoppingCart)} />,
   },
+  { path: '/checkout', element: withLayout(Checkout) },
+
   { path: '/admin/home', element: <HomeAdmin /> },
   { path: '/admin/addproduct', element: <AddProduct /> },
   { path: '/admin/listproduct', element: <ListProduct /> },

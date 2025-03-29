@@ -80,15 +80,6 @@
   ],
   "users": [
     {
-      "email": "tungk@gmail.com",
-      "password": "$2a$10$Kfn4Ex05ZVLru5YTC58B7ONsQ.WMwZ71aOAwCX7XPJ7KFYqAZOzzO",
-      "name": "XengDayyy",
-      "address": "Hà Nội",
-      "phone": "0396180619",
-      "id": 6,
-      "is_admin": true
-    },
-    {
       "email": "tungxeng@gmail.com",
       "password": "$2a$10$xmfx/JanVpNs9M1lxNZHVOzEzzhTkYUKYa7Q/5qqATkLL36PebQ5G",
       "name": "X$ng",
@@ -105,6 +96,18 @@
       "phone": "0396180619",
       "is_admin": false,
       "id": 9
+    },
+    {
+      "email": "tunglnph49038@imail.edu.vn",
+      "password": "$2a$10$Cqj7Kz9BJkzFPgrQueiOiui3nLVve.fdOD3.eanI8JyXXYA/QBY7a",
+      "name": "Lê Nguyên Tùng",
+      "address": "Thanh Hóa",
+      "phone": "0396180619",
+      "is_admin": false,
+      "id": 10
     }
-  ]
+  ],
+  "cart": {
+    "cartItem": []
+  }
 }

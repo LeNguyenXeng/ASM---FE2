@@ -75,7 +75,8 @@ function Total() {
             <button
               className="btn btn-black btn-sm py-3 btn-block"
               style={{ background: '#dc3545', border: '#dc3545' }}
-              onClick={handleDeleteCart} // Thêm sự kiện click
+              onClick={handleDeleteCart}
+              disabled={cartItems.length === 0}
             >
               Xóa giỏ hàng
             </button>
@@ -112,6 +113,7 @@ function Total() {
                     <button
                       className="btn btn-black btn-lg py-3 btn-block"
                       onClick={handleCheckout}
+                      disabled={cartItems.length === 0}
                     >
                       Thanh Toán
                     </button>

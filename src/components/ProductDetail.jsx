@@ -1,14 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { addToCart } from '../redux/action';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import formatCurrency from '../consts/formatCurrency.js';
 import useAuthen from '../hooks/useAuthen.jsx';
+import { addProductById } from '../slices/cartSlice.js';
 
-function TextProductDetail({ products }) {
+function ProductDetail({ product }) {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const userId = localStorage.getItem('UserId');
   const isAuthen = useAuthen();
   const navigate = useNavigate();
 
@@ -27,23 +28,23 @@ function TextProductDetail({ products }) {
     }
 
     const productItem = {
-      ...products,
-      quantity: Number(quantity),
+      userId,
+      product: { ...product, quantity: Number(quantity) },
     };
 
-    dispatch(addToCart(productItem));
+    dispatch(addProductById(productItem));
     toast.success('Đã thêm vào giỏ hàng');
   };
 
   return (
     <div className="ps-lg-3">
       <h4 className="title text-dark" style={{ fontSize: 24 }}>
-        {products.name}
+        {product.name}
       </h4>
       <div className="mb-3">
-        <span className="h6">{formatCurrency(products.price)}</span>
+        <span className="h6">{formatCurrency(product.price)}</span>
       </div>
-      <p style={{ fontSize: 15 }}>{products.description}</p>
+      <p style={{ fontSize: 15 }}>{product.description}</p>
       <div className="mb-4">
         <label htmlFor="quantity" className="form-label">
           Số lượng:
@@ -70,4 +71,4 @@ function TextProductDetail({ products }) {
   );
 }
 
-export default TextProductDetail;
+export default ProductDetail;

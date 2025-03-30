@@ -9,8 +9,16 @@ import WeHelp from '../components/WeHelp';
 import StartTestimonial from '../components/StartTestimonial';
 import Blog from '../components/Blog';
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
+import { fetchCartById } from '../slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 function Home() {
+  const dispatch = useDispatch();
+  const userId = localStorage.getItem('UserId');
+  useEffect(() => {
+    dispatch(fetchCartById(userId));
+  }, []);
   return (
     <div>
       <Banner

@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addToCart, deleteProductId } from "../redux/action";
-import { Button, Modal } from "react-bootstrap";
-import formatCurrency from "../consts/formatCurrency";
-import { useNavigate } from "react-router";
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Button, Modal } from 'react-bootstrap';
+import formatCurrency from '../consts/formatCurrency';
+import { useNavigate } from 'react-router';
+import { editProductById, removeProductById } from '../slices/cartSlice';
 
 function ProductCart({ item }) {
   const [quantity, setQuantity] = useState(item.quantity);
   const [total, setTotal] = useState(0);
   const [show, setShow] = useState(false);
+  const userId = localStorage.getItem('UserId');
   const navigate = useNavigate();
+  const quantityBeforeChange = useRef(quantity); // Lưu trữ số lượng trước khi thay đổi
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,39 +19,60 @@ function ProductCart({ item }) {
   const dispatch = useDispatch();
   const increaseQuantity = () => {
     const productItem = {
-      ...item,
-      quantity: quantity + 1,
+      userId,
+      product: { ...item, quantity: 1 },
     };
-    dispatch(addToCart(productItem, true));
+
+    dispatch(editProductById(productItem)); // ✅ Sử dụng editProductById
     setQuantity(quantity + 1);
   };
 
   const reduceQuantity = () => {
     const productItem = {
-      ...item,
-      quantity: quantity - 1,
+      userId,
+      product: { ...item, quantity: -1 },
     };
-    if (quantity > 0) {
-      dispatch(addToCart(productItem, true));
+
+    if (quantity > 1) {
+      // Đảm bảo quantity > 1 trước khi giảm
+      dispatch(editProductById(productItem)); // ✅ Sử dụng editProductById
       setQuantity(quantity - 1);
-    }
-    if (quantity - 1 == 0) {
-      handleShow();
+    } else if (quantity === 1) {
+      handleShow(); // Hiển thị modal xác nhận xóa khi quantity = 1
     }
   };
 
   const handleChange = (e) => {
-    const productItem = {
-      ...item,
-      quantity: Number(e.target.value),
-    };
     e.preventDefault();
-    setQuantity(e.target.value);
-    dispatch(addToCart(productItem, true));
+    const inputValue = e.target.value;
+    setQuantity(inputValue);
   };
 
-  const handleDelete = (id) => {
-    dispatch(deleteProductId(id));
+  const handleBlur = () => {
+    const newQuantity = Number(quantity); // Lấy giá trị từ state
+    if (isNaN(newQuantity) || newQuantity === 0) {
+      setShow(true);
+      quantityBeforeChange.current = quantityBeforeChange.current;
+      setQuantity(quantityBeforeChange.current);
+    } else {
+      // Nếu có số -> Dispatch
+      const productItem = {
+        userId,
+        product: { ...item, quantity: newQuantity },
+        replaceQuantity: true,
+      };
+      quantityBeforeChange.current = newQuantity;
+      dispatch(editProductById(productItem));
+    }
+  };
+
+  const handleCancelDelete = () => {
+    handleClose();
+    setQuantity(quantityBeforeChange.current); // Khôi phục lại giá trị trước đó
+  };
+
+  const handleDelete = (productId) => {
+    dispatch(removeProductById({ userId, productId }));
     handleClose();
   };
 
@@ -58,22 +81,22 @@ function ProductCart({ item }) {
   };
 
   useEffect(() => {
-    const total = quantity * item.price;
+    const total = item.quantity * item.price;
     setTotal(total);
-  }, [quantity]);
+  }, [item]);
 
   return (
     <>
       <tr key={item.id}>
         <td
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => handleNavigateToDetail(item.id)}
           className="product-thumbnail"
         >
           <img src={item.image} alt="Image" className="img-fluid" />
         </td>
         <td
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => handleNavigateToDetail(item.id)}
           className="product-name"
         >
@@ -100,6 +123,7 @@ function ProductCart({ item }) {
               className="form-control text-center quantity-amount"
               value={quantity}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
             <div className="input-group-append">
               <button
@@ -128,12 +152,12 @@ function ProductCart({ item }) {
           </Modal.Header>
           <Modal.Body>Bạn có chắc chắn muốn xóa sản phẩm này?</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={handleCancelDelete}>
               Không
             </Button>
             <Button
               variant="danger"
-              style={{ background: "#dc3545", border: "#dc3545" }}
+              style={{ background: '#dc3545', border: '#dc3545' }}
               onClick={() => handleDelete(item?.id)}
             >
               Đồng ý

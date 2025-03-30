@@ -1,12 +1,13 @@
-import { useSelector, useDispatch } from 'react-redux'; // Nhập useDispatch
+import { useSelector, useDispatch } from 'react-redux';
 import ProductCart from './ProductCart';
 import formatCurrency from '../consts/formatCurrency';
-import { clearCart } from '../redux/action';
 import { useNavigate } from 'react-router';
+import { clearCartByUserId } from '../slices/cartSlice';
 
 function Total() {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItem);
+  const cartItems = useSelector((state) => state.cart.carts);
+  const userId = localStorage.getItem('UserId');
   const navigate = useNavigate();
   const totalPrice = () => {
     return cartItems.reduce((accumulator, currentValue) => {
@@ -15,7 +16,7 @@ function Total() {
   };
 
   const handleDeleteCart = () => {
-    dispatch(clearCart());
+    dispatch(clearCartByUserId(userId));
   };
 
   const handleCheckout = () => {

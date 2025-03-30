@@ -1,22 +1,33 @@
-import { Link } from "react-router";
-import crossIcon from "../assets/images/cross.svg";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/action";
-import { toast, ToastContainer } from "react-toastify";
-import formatCurrency from "../consts/formatCurrency";
+import { Link, useNavigate } from 'react-router';
+import crossIcon from '../assets/images/cross.svg';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import formatCurrency from '../consts/formatCurrency';
+import { addProductById } from '../slices/cartSlice';
+import useAuthen from '../hooks/useAuthen.jsx';
 
 function Product({ product }) {
   const dispatch = useDispatch();
+  const userId = localStorage.getItem('UserId');
+  const isAuthen = useAuthen();
+  const navigate = useNavigate();
 
   const handleAddToCart = (event) => {
-    const productItem = {
-      ...product,
-      quantity: 1,
-    };
     event.stopPropagation();
     event.preventDefault();
-    dispatch(addToCart(productItem));
-    toast.success("Đã thêm vào giỏ hàng");
+
+    if (isAuthen) {
+      const productItem = {
+        userId,
+        product: { ...product, quantity: 1 },
+      };
+
+      dispatch(addProductById(productItem));
+      toast.success('Đã thêm vào giỏ hàng');
+    } else {
+      toast.warning('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!');
+      navigate('/login');
+    }
   };
 
   return (

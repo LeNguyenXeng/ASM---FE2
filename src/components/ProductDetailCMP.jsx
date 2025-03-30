@@ -1,21 +1,21 @@
-import { useParams } from "react-router";
-import TextProductDetail from "./TextProductDetail";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import "../assets/css/productdetail.css";
-import { getProductDetail } from "../service/products";
+import { useParams } from 'react-router';
+import TextProductDetail from './ProductDetail';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import '../assets/css/productdetail.css';
+import { getProductDetail } from '../service/products';
 
 function ProductDetailCMP() {
   const { id } = useParams();
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
 
   const getApi = async (id) => {
     try {
       const res = await getProductDetail(id);
-      setProducts(res);
+      setProduct(res);
     } catch (error) {
       console.log(error);
-      toast.error("Không thể gọi API");
+      toast.error('Không thể gọi API');
     }
   };
 
@@ -29,11 +29,11 @@ function ProductDetailCMP() {
           <div className="row gx-5">
             <aside className="col-lg-6">
               <div className=" mb-3 d-flex justify-content-center">
-                <img className="image-product-detail" src={products.image} />
+                <img className="image-product-detail" src={product.image} />
               </div>
             </aside>
             <main className="col-lg-6">
-              <TextProductDetail products={products} />
+              <TextProductDetail product={product} />
             </main>
           </div>
         </div>

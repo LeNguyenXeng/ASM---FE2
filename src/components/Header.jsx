@@ -2,10 +2,16 @@ import userIcon from '../assets/images/user.svg';
 import cartIcon from '../assets/images/cart.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 function Header() {
   const navigate = useNavigate();
-  const totalItem = useSelector((state) => state.cart.carts?.length);
+  const cartItems = useSelector((state) => state.cart.carts);
+  const [totalItem, setTotalItem] = useState(cartItems?.length || 0);
+
+  useEffect(() => {
+    setTotalItem(cartItems?.length || 0);
+  }, [cartItems]); // Khi cartItems thay đổi, cập nhật totalItem
   const token = localStorage.getItem('Token');
   const userId = localStorage.getItem('UserId');
   const handleClick = () => {

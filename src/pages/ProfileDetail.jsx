@@ -12,8 +12,6 @@ function ProfileDetail() {
   const [users, setUsers] = useState([]);
 
   const getList = async () => {
-    console.log(id);
-
     try {
       const res = await profile(id);
       setUsers(res);
@@ -43,7 +41,6 @@ function ProfileDetail() {
 
   const handleLogout = (id) => {
     try {
-      axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`);
       setTimeout(() => {
         navigate('/login');
       }, 1000);

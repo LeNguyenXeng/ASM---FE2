@@ -1,15 +1,21 @@
-import userIcon from "../assets/images/user.svg";
-import cartIcon from "../assets/images/cart.svg";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import userIcon from '../assets/images/user.svg';
+import cartIcon from '../assets/images/cart.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 function Header() {
   const navigate = useNavigate();
-  const cartItemCount = useSelector((state) => state.cart.cartItem.length);
+  const cartItems = useSelector((state) => state.cart.carts);
+  const [totalItem, setTotalItem] = useState(cartItems?.length || 0);
+
+  useEffect(() => {
+    setTotalItem(cartItems?.length || 0);
+  }, [cartItems]); // Khi cartItems thay đổi, cập nhật totalItem
+  const token = localStorage.getItem('Token');
+  const userId = localStorage.getItem('UserId');
   const handleClick = () => {
-    const token = localStorage.getItem("Token");
-    const userId = localStorage.getItem("UserId");
-    token ? navigate(`/profile/${userId}`) : navigate("/login");
+    token ? navigate(`/profile/${userId}`) : navigate('/login');
   };
 
   return (
@@ -74,14 +80,14 @@ function Header() {
                   </button>
                 </li>
                 <li>
-                  <Link className="nav-link" to={"/shopping-cart"}>
+                  <Link className="nav-link" to={'/shopping-cart'}>
                     <img src={cartIcon} alt="Cart" />
-                    {cartItemCount > 0 && (
+                    {totalItem > 0 && (
                       <span
                         className="badge bg-danger rounded-circle position-absolute"
                         style={{ marginLeft: -12 }}
                       >
-                        {cartItemCount}
+                        {totalItem}
                       </span>
                     )}
                   </Link>

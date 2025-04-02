@@ -270,6 +270,107 @@
       "totalPrice": 200000,
       "status": "Đang xử lý",
       "id": 9
+    },
+    {
+      "userId": "10",
+      "customer": {
+        "name": "Xèng",
+        "email": "alo123@gmai.com",
+        "phone": "0396180619",
+        "address": "Số nhà 82, Phố ABC, Phường XYZ, Quận LMN, TPHà Nội",
+        "paymentMethod": "cod"
+      },
+      "items": [
+        {
+          "id": 1,
+          "name": "Ghế ăn - Ghế cafe XDAILY - Eames chair",
+          "price": "9360000",
+          "description": "Kích thước (DxR):\n1800*850mm – Giá: 9,360,000 VND\n2000*850mm – Giá: 10,400,000 VND\n2200*850mm – Giá: 11,440,000 VND",
+          "image": "https://product.hstatic.net/1000400963/product/ghe-an-xdaily-eames-chair__1__c073b3c9cb9c49b48b92f957bff0c3e3_master.jpg",
+          "quantity": 1
+        },
+        {
+          "id": 5,
+          "name": "Grey Chair",
+          "price": "1000000",
+          "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+          "image": "https://png.pngtree.com/png-vector/20241019/ourmid/pngtree-a-simple-grey-modern-chair-isolated-on-transparent-background-png-image_14122820.png",
+          "quantity": 1
+        },
+        {
+          "id": 6,
+          "name": "Flow",
+          "price": "200000",
+          "description": "Upholstered in your choice of fabric & colour\nOak, Walnut or Black wood finishes available\nAlso available with arms",
+          "image": "https://www.hsifurniture.co.uk/new-used-office-furniture/Flow-chair-wood-4leg-FW16W.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 10560000,
+      "status": "Đang xử lý",
+      "id": 10
+    },
+    {
+      "userId": "11",
+      "customer": {
+        "name": "Xèng",
+        "email": "tunglnph49038@gmail.com",
+        "phone": "0396180619",
+        "address": "Số nhà 82, Phố ABC, Phường XYZ, Quận LMN, Tỉnh Thanh Hóa",
+        "paymentMethod": "cod"
+      },
+      "items": [
+        {
+          "id": 6,
+          "name": "Flow",
+          "price": "200000",
+          "description": "Upholstered in your choice of fabric & colour\nOak, Walnut or Black wood finishes available\nAlso available with arms",
+          "image": "https://www.hsifurniture.co.uk/new-used-office-furniture/Flow-chair-wood-4leg-FW16W.jpg",
+          "quantity": 1
+        },
+        {
+          "id": 1,
+          "name": "Ghế ăn - Ghế cafe XDAILY - Eames chair",
+          "price": "9360000",
+          "description": "Kích thước (DxR):\n1800*850mm – Giá: 9,360,000 VND\n2000*850mm – Giá: 10,400,000 VND\n2200*850mm – Giá: 11,440,000 VND",
+          "image": "https://product.hstatic.net/1000400963/product/ghe-an-xdaily-eames-chair__1__c073b3c9cb9c49b48b92f957bff0c3e3_master.jpg",
+          "quantity": 5
+        },
+        {
+          "id": 2,
+          "name": "Ghế Ăn Vải Nỉ Bizu",
+          "price": 25000000,
+          "description": "Ghế bọc vải là một trong những sản phẩm nổi bật của Furnist. Với thiết kế ấn tượng cùng công nghệ sản xuất tiên tiến, đảm bảo về công năng sử dụng. Sản phẩm là sự thành công để mang đến không gian vẻ đẹp sang trọng, đa năng trong cách ứng dụng và an toàn cho người sử dụng.",
+          "image": "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-PNG-HD-Quality.png",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 72000000,
+      "status": "Đang xử lý",
+      "id": 11
+    },
+    {
+      "userId": "11",
+      "customer": {
+        "name": "ASUS TUF Gaming A15",
+        "email": "tunglnph49038@gmail.com",
+        "phone": "0396180619",
+        "address": "Số nhà 82, Phố ABC, Phường XYZ, Quận LMN, TPHN",
+        "paymentMethod": "cod"
+      },
+      "items": [
+        {
+          "id": 7,
+          "name": "Ghế ăn gỗ đệm vải có tay N010489",
+          "price": "3360000",
+          "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
+          "image": "https://product.hstatic.net/200000532817/product/ghe_an_go_dem_vai_co_tay_n010489_2e5d27e9b70847548fb0c178c19f924f_master.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 3360000,
+      "status": "Đang xử lý",
+      "id": 12
     }
   ],
   "users": [
@@ -297,7 +398,7 @@
       "name": "Lê Nguyên Tùng",
       "address": "Thanh Hóa",
       "phone": "0396180619",
-      "is_admin": false,
+      "is_admin": true,
       "id": 10
     },
     {
@@ -326,40 +427,18 @@
       "id": 2
     },
     {
-      "userId": "10",
+      "userId": "11",
       "products": [
         {
-          "id": 5,
-          "name": "Grey Chair",
-          "price": "1000000",
+          "id": 7,
+          "name": "Ghế ăn gỗ đệm vải có tay N010489",
+          "price": "3360000",
           "description": "Sofa da cao cấp nhập khẩu, chất liệu da thật, mềm mại và bền bỉ.",
-          "image": "https://png.pngtree.com/png-vector/20241019/ourmid/pngtree-a-simple-grey-modern-chair-isolated-on-transparent-background-png-image_14122820.png",
+          "image": "https://product.hstatic.net/200000532817/product/ghe_an_go_dem_vai_co_tay_n010489_2e5d27e9b70847548fb0c178c19f924f_master.jpg",
           "quantity": 1
         }
       ],
       "id": 3
-    },
-    {
-      "userId": "11",
-      "products": [
-        {
-          "id": 6,
-          "name": "Flow",
-          "price": "200000",
-          "description": "Upholstered in your choice of fabric & colour\nOak, Walnut or Black wood finishes available\nAlso available with arms",
-          "image": "https://www.hsifurniture.co.uk/new-used-office-furniture/Flow-chair-wood-4leg-FW16W.jpg",
-          "quantity": 1
-        },
-        {
-          "id": 1,
-          "name": "Ghế ăn - Ghế cafe XDAILY - Eames chair",
-          "price": "9360000",
-          "description": "Kích thước (DxR):\n1800*850mm – Giá: 9,360,000 VND\n2000*850mm – Giá: 10,400,000 VND\n2200*850mm – Giá: 11,440,000 VND",
-          "image": "https://product.hstatic.net/1000400963/product/ghe-an-xdaily-eames-chair__1__c073b3c9cb9c49b48b92f957bff0c3e3_master.jpg",
-          "quantity": 5
-        }
-      ],
-      "id": 4
     }
   ]
 }

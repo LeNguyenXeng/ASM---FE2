@@ -21,6 +21,9 @@ import ProfileAdmin from './pages/admin/ProfileAdmin';
 import Layout from './components/Layout.jsx';
 import useAuthen from './hooks/useAuthen.jsx';
 import Checkout from './pages/Checkout.jsx';
+import Order from './pages/Order.jsx';
+import OrderDetailsProductPage from './pages/OrderDetailsProduct.jsx';
+import ThanksYou from './pages/ThanksYou.jsx';
 
 const withLayout = (Component) => (
   <Layout>
@@ -43,6 +46,10 @@ const routerConfig = [
   { path: '/product-detail/:id', element: withLayout(ProductDetail) },
   { path: '/profile/:id', element: withLayout(Profile) },
   { path: '/updateaccount/:id', element: withLayout(UpdateAccount) },
+  { path: '/order/:id', element: withLayout(Order) },
+  { path: '/orderproduct/:id', element: withLayout(OrderDetailsProductPage) },
+  { path: '/thanksyou', element: withLayout(ThanksYou) },
+
   {
     path: '/shopping-cart',
     element: <PrivateRoute element={withLayout(ShoppingCart)} />,

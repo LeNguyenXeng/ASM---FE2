@@ -55,6 +55,9 @@ function ProfileDetail() {
   const nextPage = () => {
     navigate(`/updateaccount/${users.id}`);
   };
+  const order = () => {
+    navigate(`/order/${users.id}`);
+  };
   const adminLogin = () => {
     navigate('/admin/home');
   };
@@ -123,6 +126,19 @@ function ProfileDetail() {
                       </button>
                     )}
                   </div>
+                  <button
+                    onClick={order}
+                    type="button"
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    className="btn btn-outline-primary mb-2 ms-1 mt-1"
+                    style={{
+                      background: 'rgb(130 0 255)',
+                      border: 'rgb(130 0 255)',
+                    }}
+                  >
+                    Đơn hàng của tôi
+                  </button>
                 </div>
               </div>
               <div className="card mb-4 mb-lg-0">

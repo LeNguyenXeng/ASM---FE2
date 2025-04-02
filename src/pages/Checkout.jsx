@@ -46,7 +46,7 @@ function Checkout() {
       await axios.post('http://localhost:3000/orders', orderData);
       dispatch(clearCartByUserId(userId));
       toast.success('Đặt hàng thành công');
-      navigate('/shop', { replace: true });
+      navigate('/thanksyou', { replace: true });
     } catch (error) {
       console.error('Lỗi đặt hàng:', error);
       toast.error('Đã xảy ra lỗi, vui lòng thử lại!');

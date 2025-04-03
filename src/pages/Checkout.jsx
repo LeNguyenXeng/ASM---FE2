@@ -39,7 +39,7 @@ function Checkout() {
       customer: data,
       items: cartItems,
       totalPrice,
-      status: 'Đang xử lý',
+      status: 'Chờ xác nhận',
     };
 
     try {

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Ghế ăn - Ghế cafe XDAILY - Eames chair",
-      "price": "9360000",
+      "price": "10000000",
       "description": "Kích thước (DxR):\n1800*850mm – Giá: 9,360,000 VND\n2000*850mm – Giá: 10,400,000 VND\n2200*850mm – Giá: 11,440,000 VND",
       "image": "https://product.hstatic.net/1000400963/product/ghe-an-xdaily-eames-chair__1__c073b3c9cb9c49b48b92f957bff0c3e3_master.jpg"
     },
@@ -385,8 +385,8 @@
     },
     {
       "email": "tungdayne@gmail.com",
-      "password": "$2a$10$EcL2z4L6m59HrxQNtMRi5OqOKkx3rQfHMl5kEAV84ibahUUKGe0Z2",
-      "name": "ALo",
+      "password": "$2a$10$zXeZdEWyXWr2LaCvW6oaEusww4Hb8xBswmmPCDe0wcyidljTTPzYm",
+      "name": "TUNG XENG",
       "address": "Thanh Hóa",
       "phone": "0396180619",
       "is_admin": false,
@@ -403,11 +403,11 @@
     },
     {
       "email": "anhln@gmail.com",
-      "password": "$2a$10$NyBw4Ut5h8dOZFe.neD0zOpUXvfhfA8iLyOBHRzAopHclRqijBcey",
+      "password": "$2a$10$LYsBvZjT8TT.sbSONS7a3OTEehAitmXiG0TqOIB9vobrpTr4R1N9O",
       "name": "anhln",
       "address": "me tri",
-      "phone": "012345679",
-      "is_admin": false,
+      "phone": "0396180619",
+      "is_admin": true,
       "id": 11
     }
   ],

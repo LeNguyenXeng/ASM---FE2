@@ -1,6 +1,41 @@
-import { Link } from 'react-router';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { toast } from 'react-toastify';
+import formatCurrency from '../../consts/formatCurrency';
 
 function UpdateOrder() {
+  const [orderProducts, setOrderProducts] = useState([]);
+  const { id } = useParams();
+  const [status, setStatus] = useState('');
+  const navigate = useNavigate();
+  const getList = async (id) => {
+    try {
+      const res = await axios.get(`http://localhost:3000/orders/${id}`);
+      setOrderProducts(res.data);
+      setStatus(res.data.status);
+    } catch (error) {
+      console.log(error);
+      toast.error('Lỗi');
+    }
+  };
+
+  const updateStatus = async () => {
+    try {
+      await axios.patch(`http://localhost:3000/orders/${id}`, {
+        status: status,
+      });
+      toast.success('Cập nhật trạng thái thành công!');
+      navigate('/admin/listorder');
+    } catch (error) {
+      console.log(error);
+      toast.error('Lỗi khi cập nhật trạng thái');
+    }
+  };
+
+  useEffect(() => {
+    getList(id);
+  }, [id]);
   return (
     <>
       <div className="card shadow mb-4">
@@ -19,7 +54,7 @@ function UpdateOrder() {
             >
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>ID Sản phẩm</th>
                   <th>Hình Ảnh</th>
                   <th>Tên Sản Phẩm</th>
                   <th>Giá</th>
@@ -28,14 +63,24 @@ function UpdateOrder() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                </tr>
+                {orderProducts.items &&
+                  Array.isArray(orderProducts.items) &&
+                  orderProducts.items.map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.id}</td>
+                      <td>
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          style={{ width: '120px' }}
+                        />
+                      </td>
+                      <td>{item.name}</td>
+                      <td>{formatCurrency(item.price)}</td>
+                      <td>{item.quantity}</td>
+                      <td>{formatCurrency(item.price * item.quantity)}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
             <div
@@ -49,7 +94,7 @@ function UpdateOrder() {
             >
               <p style={{ fontSize: 17, fontWeight: 500 }}>Tổng Tiền:</p>
               <span style={{ fontSize: 17, fontWeight: 700, color: 'red' }}>
-                100000đ
+                {formatCurrency(orderProducts.totalPrice)}
               </span>
             </div>
             <div>
@@ -58,7 +103,12 @@ function UpdateOrder() {
               >
                 Trạng thái:
               </label>
-              <select class="form-select" aria-label="Default select example">
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              >
                 <option value="Chờ xác nhận">Chờ xác nhận</option>
                 <option value="Đã xác nhận">Đã xác nhận</option>
                 <option value="Chờ lấy hàng">Chờ lấy hàng</option>
@@ -75,6 +125,7 @@ function UpdateOrder() {
                 style={{ background: '#4e73df', border: '1px solid #4e73df' }}
                 type="submit"
                 className="btn btn-primary mt-3"
+                onClick={updateStatus}
               >
                 Cập nhật đơn hàng
               </button>

@@ -4,19 +4,19 @@ import "../assets/css/error.css";
 function Error() {
   return (
     <>
-      <section class="error-container">
-        <span class="four">
-          <span class="screen-reader-text">4</span>
+      <section className="error-container">
+        <span className="four">
+          <span className="screen-reader-text">4</span>
         </span>
-        <span class="zero">
-          <span class="screen-reader-text">0</span>
+        <span className="zero">
+          <span className="screen-reader-text">0</span>
         </span>
-        <span class="four">
-          <span class="screen-reader-text">4</span>
+        <span className="four">
+          <span className="screen-reader-text">4</span>
         </span>
       </section>
-      <div class="link-container">
-        <Link to={"/"} class="more-link">
+      <div className="link-container">
+        <Link to={"/"} className="more-link">
           Quay lại trang chủ
         </Link>
       </div>

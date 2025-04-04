@@ -31,11 +31,11 @@ function OrderDetailsProduct() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th class="product-thumbnail">Hình ảnh</th>
-                    <th class="product-name">Tên sản phẩm</th>
-                    <th class="product-price">Giá sản phẩm</th>
-                    <th class="product-quantity">Số lượng</th>
-                    <th class="product-quantity">Mô tả</th>
+                    <th className="product-thumbnail">Hình ảnh</th>
+                    <th className="product-name">Tên sản phẩm</th>
+                    <th className="product-price">Giá sản phẩm</th>
+                    <th className="product-quantity">Số lượng</th>
+                    <th className="product-quantity">Mô tả</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -81,7 +81,7 @@ function OrderDetailsProduct() {
                   </div>
                   <div className="row">
                     <Link to={`/order/${orders.userId}`} className="col-md-12">
-                      <button type="button" class="btn btn-primary">
+                      <button type="button" className="btn btn-primary">
                         Quay lại trang đơn hàng
                       </button>
                     </Link>

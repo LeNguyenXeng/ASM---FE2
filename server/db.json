@@ -409,6 +409,15 @@
       "phone": "0396180619",
       "is_admin": true,
       "id": 11
+    },
+    {
+      "email": "tung@gmail.com",
+      "password": "$2a$10$2vpFfXf6FE4WfIQKCEFEGOfeqN/cvq6dBmbBFlcRT1ouITfT.PdPO",
+      "name": "Lê Nguyên Tùng",
+      "address": "Thanh Hóa",
+      "phone": "0396180619",
+      "is_admin": false,
+      "id": 12
     }
   ],
   "cart": [

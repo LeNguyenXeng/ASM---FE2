@@ -1,17 +1,27 @@
 import { useEffect, useState } from 'react';
 
 function useAuthen() {
-  const [isLogin, setIsLogin] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return !!localStorage.getItem('Token');
-  });
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('Token');
-    setIsLogin(!!token);
+    const userData = localStorage.getItem('User');
+
+    if (token && userData) {
+      try {
+        const parsedUser = JSON.parse(userData);
+        setUser(parsedUser);
+        console.log('User loaded:', parsedUser);
+      } catch (error) {
+        console.error('Invalid user data in localStorage');
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
   }, []);
 
-  return isLogin;
+  return user; // trả về full object
 }
 
 export default useAuthen;

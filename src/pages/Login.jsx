@@ -26,6 +26,7 @@ function Login() {
       toast.success('Đăng nhập thành công');
       localStorage.setItem('Token', res.accessToken);
       localStorage.setItem('UserId', res.user.id);
+      localStorage.setItem('User', JSON.stringify(res.user));
     } catch (error) {
       console.log(error);
       reset();

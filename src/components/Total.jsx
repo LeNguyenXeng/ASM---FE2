@@ -6,7 +6,7 @@ import { clearCartByUserId } from '../slices/cartSlice';
 
 function Total() {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.carts);
+  const cartItems = useSelector((state) => state.cart.carts) || [];
   const userId = localStorage.getItem('UserId');
   const navigate = useNavigate();
   const totalPrice = () => {

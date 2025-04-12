@@ -56,7 +56,7 @@ const routerConfig = [
 
   {
     path: '/shopping-cart',
-    element: <PrivateRoute element={withLayout(ShoppingCart)} />,
+    element: withLayout(ShoppingCart),
   },
   { path: '/checkout', element: withLayout(Checkout) },
 

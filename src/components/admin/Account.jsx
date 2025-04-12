@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 function AccountPage() {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // ✅ Thêm state tìm kiếm
 
   const getListUser = async () => {
     try {
@@ -26,13 +27,25 @@ function AccountPage() {
     getListUser();
   }, []);
 
+  // ✅ Lọc danh sách theo tên tài khoản
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <div className="card shadow mb-4">
-        <div className="card-header py-3">
+        <div className="card-header py-3 d-flex justify-content-between align-items-center">
           <h6 className="m-0 font-weight-bold" style={{ fontWeight: 700 }}>
-            DANH SÁCH SẢN PHẨM
+            DANH SÁCH TÀI KHOẢN
           </h6>
+          <input
+            type="text"
+            placeholder="Tìm kiếm tên tài khoản..."
+            className="form-control w-25"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
         <div className="card-body">
           <div className="table-responsive">
@@ -54,7 +67,7 @@ function AccountPage() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((item, index) => (
+                {filteredUsers.map((item, index) => (
                   <tr key={index}>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
@@ -66,7 +79,6 @@ function AccountPage() {
                     >
                       {item.is_admin ? 'Admin' : 'Member'}
                     </td>
-
                     <td>
                       <div style={{ display: 'flex' }}>
                         <Link
@@ -81,6 +93,13 @@ function AccountPage() {
                     </td>
                   </tr>
                 ))}
+                {filteredUsers.length === 0 && (
+                  <tr>
+                    <td colSpan="7" className="text-center">
+                      Không tìm thấy kết quả
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

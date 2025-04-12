@@ -371,6 +371,29 @@
       "totalPrice": 3360000,
       "status": "Đang xử lý",
       "id": 12
+    },
+    {
+      "userId": "10",
+      "customer": {
+        "name": "ASUS TUF Gaming A15",
+        "email": "tunglnph49038@imail.edu.vn",
+        "phone": "0396180619",
+        "address": "Số nhà 82, Phố ABC, Phường XYZ, Quận LMN, Tỉnh ALO",
+        "paymentMethod": "cod"
+      },
+      "items": [
+        {
+          "id": 1,
+          "name": "Ghế ăn - Ghế cafe XDAILY - Eames chair",
+          "price": "10000000",
+          "description": "Kích thước (DxR):\n1800*850mm – Giá: 9,360,000 VND\n2000*850mm – Giá: 10,400,000 VND\n2200*850mm – Giá: 11,440,000 VND",
+          "image": "https://product.hstatic.net/1000400963/product/ghe-an-xdaily-eames-chair__1__c073b3c9cb9c49b48b92f957bff0c3e3_master.jpg",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 10000000,
+      "status": "Đang giao hàng",
+      "id": 13
     }
   ],
   "users": [
@@ -448,6 +471,20 @@
         }
       ],
       "id": 3
+    },
+    {
+      "userId": "10",
+      "products": [
+        {
+          "id": 2,
+          "name": "Ghế Ăn Vải Nỉ Bizu",
+          "price": 25000000,
+          "description": "Ghế bọc vải là một trong những sản phẩm nổi bật của Furnist. Với thiết kế ấn tượng cùng công nghệ sản xuất tiên tiến, đảm bảo về công năng sử dụng. Sản phẩm là sự thành công để mang đến không gian vẻ đẹp sang trọng, đa năng trong cách ứng dụng và an toàn cho người sử dụng.",
+          "image": "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-PNG-HD-Quality.png",
+          "quantity": 1
+        }
+      ],
+      "id": 4
     }
   ]
 }

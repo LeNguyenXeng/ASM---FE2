@@ -11,7 +11,6 @@ function useAuthen() {
       try {
         const parsedUser = JSON.parse(userData);
         setUser(parsedUser);
-        console.log('User loaded:', parsedUser);
       } catch (error) {
         console.error('Invalid user data in localStorage');
         setUser(null);

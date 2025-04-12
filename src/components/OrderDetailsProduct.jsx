@@ -5,8 +5,8 @@ import formatCurrency from '../consts/formatCurrency';
 
 function OrderDetailsProduct() {
   const [orders, setOrders] = useState([]);
-
   const { id } = useParams();
+
   const getOrders = async (id) => {
     try {
       const res = await axios.get(`http://localhost:3000/orders/${id}`);
@@ -50,7 +50,6 @@ function OrderDetailsProduct() {
                             alt={item.name}
                           />
                         </td>
-
                         <td className="product-name">{item.name}</td>
                         <td className="product-price">
                           {formatCurrency(item.price)}
@@ -63,32 +62,62 @@ function OrderDetailsProduct() {
               </table>
             </div>
           </form>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <div className="row justify-content-end">
-                <div className="col-md-12">
-                  <div className="row mb-5">
-                    <div className="col-md-6">
-                      <span className="text-black" style={{ fontSize: 20 }}>
-                        Tổng tiền:
-                      </span>
-                    </div>
-                    <div className="col-md-6 text-right">
-                      <strong style={{ fontSize: 20, color: 'rgb(210, 0, 0)' }}>
-                        {formatCurrency(orders.totalPrice)}
-                      </strong>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <Link to={`/order/${orders.userId}`} className="col-md-12">
-                      <button type="button" className="btn btn-primary">
-                        Quay lại trang đơn hàng
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+
+          <div className="col-md-6">
+            <div className="card p-4 mb-4 shadow-sm">
+              <h5 className="mb-3" style={{ fontWeight: 800 }}>
+                Thông tin người nhận
+              </h5>
+              <p>
+                <strong>Người đặt hàng:</strong> {orders.customer?.name}
+              </p>
+              <p>
+                <strong>Email:</strong> {orders.customer?.email}
+              </p>
+              <p>
+                <strong>Địa chỉ:</strong> {orders.customer?.address}
+              </p>
+              <p>
+                <strong>Số điện thoại:</strong> {orders.customer?.phone}
+              </p>
             </div>
+          </div>
+
+          <div className="col-md-6">
+            <div className="card p-4 mb-4 shadow-sm">
+              <h5 className="mb-3" style={{ fontWeight: 800 }}>
+                Chi tiết đơn hàng
+              </h5>
+              <p>
+                <strong>Phương thức thanh toán:</strong>{' '}
+                {orders.customer?.paymentMethod === 'cod'
+                  ? 'Thanh toán khi nhận hàng'
+                  : 'Không xác định'}
+              </p>
+              <p>
+                <strong>Trạng thái:</strong> {orders.status}
+              </p>
+              <p className='mt-1'>
+                <strong style={{ fontSize: 20 }}>Tổng tiền: </strong>
+                <span
+                  style={{
+                    color: 'rgb(210, 0, 0)',
+                    fontWeight: 600,
+                    fontSize: 20,
+                  }}
+                >
+                  {formatCurrency(orders.totalPrice)}
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div className="col-md-12 text-center mt-4">
+            <Link to={`/order/${orders.userId}`}>
+              <button type="button" className="btn btn-primary">
+                Quay lại trang đơn hàng
+              </button>
+            </Link>
           </div>
         </div>
       </div>

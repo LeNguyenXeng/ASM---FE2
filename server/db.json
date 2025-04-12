@@ -86,7 +86,8 @@
         }
       ],
       "totalPrice": 39360000,
-      "id": 1
+      "id": 1,
+      "status": "Giao hàng thành công"
     },
     {
       "userId": "10",
@@ -108,7 +109,8 @@
         }
       ],
       "totalPrice": 200000,
-      "id": 2
+      "id": 2,
+      "status": "Đang giao hàng"
     },
     {
       "userId": "10",
@@ -153,7 +155,7 @@
         }
       ],
       "totalPrice": 25000000,
-      "status": "Đang xử lý",
+      "status": "Đang giao hàng",
       "id": 4
     },
     {
@@ -199,7 +201,7 @@
         }
       ],
       "totalPrice": 3360000,
-      "status": "Đang giao hàng",
+      "status": "Giao hàng thành công",
       "id": 6
     },
     {
@@ -222,7 +224,7 @@
         }
       ],
       "totalPrice": 3360000,
-      "status": "Đang xử lý",
+      "status": "Đã xác nhận",
       "id": 7
     },
     {
@@ -245,7 +247,7 @@
         }
       ],
       "totalPrice": 3360000,
-      "status": "Đang xử lý",
+      "status": "Đã xác nhận",
       "id": 8
     },
     {
@@ -268,7 +270,7 @@
         }
       ],
       "totalPrice": 200000,
-      "status": "Đang xử lý",
+      "status": "Trả hàng",
       "id": 9
     },
     {
@@ -346,7 +348,7 @@
         }
       ],
       "totalPrice": 72000000,
-      "status": "Đang xử lý",
+      "status": "Giao hàng thành công",
       "id": 11
     },
     {
@@ -369,7 +371,7 @@
         }
       ],
       "totalPrice": 3360000,
-      "status": "Đang xử lý",
+      "status": "Chờ lấy hàng",
       "id": 12
     },
     {

@@ -64,7 +64,7 @@ const routerConfig = [
     path: '/admin',
     element: <AdminRoute element={<AdminLayout />} />,
     children: [
-      { path: '', element: <Navigate to="home" replace /> }, // Redirect mặc định
+      { path: '', element: <Navigate to="home" replace /> },
       { path: 'home', element: <HomeAdmin /> },
       { path: 'addproduct', element: <AddProduct /> },
       { path: 'listproduct', element: <ListProduct /> },

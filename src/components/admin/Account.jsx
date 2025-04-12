@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 function AccountPage() {
   const [users, setUsers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(''); // ✅ Thêm state tìm kiếm
+  const [searchTerm, setSearchTerm] = useState('');
 
   const getListUser = async () => {
     try {
@@ -27,7 +27,6 @@ function AccountPage() {
     getListUser();
   }, []);
 
-  // ✅ Lọc danh sách theo tên tài khoản
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );

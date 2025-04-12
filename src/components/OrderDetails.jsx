@@ -7,6 +7,7 @@ function OrderDetails() {
   const [orders, setOrders] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+
   const getOrders = async (userId) => {
     try {
       const res = await axios.get(
@@ -26,6 +27,26 @@ function OrderDetails() {
 
   const handleClickOrderDetailsProduct = (id) => {
     navigate(`/orderproduct/${id}`);
+  };
+
+  const handleCancelOrder = async (orderId) => {
+    if (!window.confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')) return;
+    try {
+      await axios.patch(`http://localhost:3000/orders/${orderId}`, {
+        status: 'Đã hủy',
+      });
+      getOrders(id);
+    } catch (error) {
+      console.error(
+        'Lỗi khi hủy đơn hàng:',
+        error.response?.data || error.message
+      );
+    }
+  };
+
+  const canCancel = (status) => {
+    const cancellableStatuses = ['chờ xác nhận', 'đã xác nhận'];
+    return cancellableStatuses.includes(status?.toLowerCase());
   };
 
   return (
@@ -63,9 +84,13 @@ function OrderDetails() {
                         <button
                           type="button"
                           style={{
-                            backgroundColor: '#0d6efd',
-                            borderRadius: 10,
-                            color: 'white',
+                            borderRadius: '10px',
+                            fontWeight: 'bold',
+                            padding: '6px 12px',
+                            backgroundColor: '#007bff', // Màu nền cho nút "Xem chi tiết"
+                            color: '#ffffff', // Màu chữ cho nút "Xem chi tiết"
+                            border: 'none', // Xóa viền
+                            cursor: 'pointer', // Hiển thị con trỏ tay khi di chuột
                           }}
                           onClick={() =>
                             handleClickOrderDetailsProduct(order.id)
@@ -73,6 +98,24 @@ function OrderDetails() {
                         >
                           Xem chi tiết
                         </button>
+
+                        {canCancel(order.status) && (
+                          <button
+                            type="button"
+                            style={{
+                              borderRadius: '10px',
+                              fontWeight: 'bold',
+                              padding: '6px 12px',
+                              backgroundColor: '#dc3545',
+                              color: '#ffffff',
+                              border: 'none',
+                              cursor: 'pointer',
+                            }}
+                            onClick={() => handleCancelOrder(order.id)}
+                          >
+                            Hủy
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

@@ -8,12 +8,25 @@ function UpdateOrder() {
   const [orderProducts, setOrderProducts] = useState([]);
   const { id } = useParams();
   const [status, setStatus] = useState('');
+  const [initialStatus, setInitialStatus] = useState(''); // 👉 trạng thái ban đầu
   const navigate = useNavigate();
+
+  const statusOrder = [
+    'Chờ xác nhận',
+    'Đã xác nhận',
+    'Chờ lấy hàng',
+    'Đang giao hàng',
+    'Giao hàng thành công',
+    'Đã hủy',
+    'Trả hàng',
+  ];
+
   const getList = async (id) => {
     try {
       const res = await axios.get(`http://localhost:3000/orders/${id}`);
       setOrderProducts(res.data);
       setStatus(res.data.status);
+      setInitialStatus(res.data.status); // 👉 lưu trạng thái ban đầu
     } catch (error) {
       console.log(error);
       toast.error('Lỗi');
@@ -36,6 +49,7 @@ function UpdateOrder() {
   useEffect(() => {
     getList(id);
   }, [id]);
+
   return (
     <>
       <div className="card shadow mb-4">
@@ -107,17 +121,23 @@ function UpdateOrder() {
                 className="form-select"
                 aria-label="Default select example"
                 value={status}
-                onChange={(e) => setStatus(e.target.value)}
+                onChange={(e) => {
+                  const newStatus = e.target.value;
+                  const currentIndex = statusOrder.indexOf(initialStatus);
+                  const newIndex = statusOrder.indexOf(newStatus);
+
+                  if (newIndex < currentIndex) {
+                    toast.warning('Không thể quay lại trạng thái trước đó!');
+                  } else {
+                    setStatus(newStatus);
+                  }
+                }}
               >
-                <option value="Chờ xác nhận">Chờ xác nhận</option>
-                <option value="Đã xác nhận">Đã xác nhận</option>
-                <option value="Chờ lấy hàng">Chờ lấy hàng</option>
-                <option value="Đang giao hàng">Đang giao hàng</option>
-                <option value="Giao hàng thành công">
-                  Giao hàng thành công
-                </option>
-                <option value="Đã hủy">Đã hủy</option>
-                <option value="Trả hàng">Trả hàng</option>
+                {statusOrder.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
             <div style={{ marginTop: 20 }}>

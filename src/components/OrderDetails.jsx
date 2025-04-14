@@ -44,9 +44,25 @@ function OrderDetails() {
     }
   };
 
+  const handleReturnOrder = async (orderId) => {
+    if (!window.confirm('Bạn có muốn trả hàng cho đơn hàng này?')) return;
+    try {
+      await axios.patch(`http://localhost:3000/orders/${orderId}`, {
+        status: 'Trả hàng',
+      });
+      getOrders(id);
+    } catch (error) {
+      console.error('Lỗi khi trả hàng:', error.response?.data || error.message);
+    }
+  };
+
   const canCancel = (status) => {
     const cancellableStatuses = ['chờ xác nhận', 'đã xác nhận'];
     return cancellableStatuses.includes(status?.toLowerCase());
+  };
+
+  const canReturn = (status) => {
+    return status?.toLowerCase() === 'giao hàng thành công';
   };
 
   return (
@@ -87,10 +103,10 @@ function OrderDetails() {
                             borderRadius: '10px',
                             fontWeight: 'bold',
                             padding: '6px 12px',
-                            backgroundColor: '#007bff', // Màu nền cho nút "Xem chi tiết"
-                            color: '#ffffff', // Màu chữ cho nút "Xem chi tiết"
-                            border: 'none', // Xóa viền
-                            cursor: 'pointer', // Hiển thị con trỏ tay khi di chuột
+                            backgroundColor: '#007bff',
+                            color: '#ffffff',
+                            border: 'none',
+                            cursor: 'pointer',
                           }}
                           onClick={() =>
                             handleClickOrderDetailsProduct(order.id)
@@ -106,7 +122,7 @@ function OrderDetails() {
                               borderRadius: '10px',
                               fontWeight: 'bold',
                               padding: '6px 12px',
-                              backgroundColor: '#dc3545',
+                              backgroundColor: '#dc3545', // Màu nền cho nút "Hủy"
                               color: '#ffffff',
                               border: 'none',
                               cursor: 'pointer',
@@ -114,6 +130,24 @@ function OrderDetails() {
                             onClick={() => handleCancelOrder(order.id)}
                           >
                             Hủy
+                          </button>
+                        )}
+
+                        {canReturn(order.status) && (
+                          <button
+                            type="button"
+                            style={{
+                              borderRadius: '10px',
+                              fontWeight: 'bold',
+                              padding: '6px 12px',
+                              backgroundColor: '#ffc107', // Màu nền cho nút "Trả hàng"
+                              color: '#ffffff',
+                              border: 'none',
+                              cursor: 'pointer',
+                            }}
+                            onClick={() => handleReturnOrder(order.id)}
+                          >
+                            Trả hàng
                           </button>
                         )}
                       </td>

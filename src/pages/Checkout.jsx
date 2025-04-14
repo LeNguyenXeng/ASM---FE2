@@ -56,7 +56,6 @@ function Checkout() {
   return (
     <div className="container">
       <div className="row">
-        {/* Form nhập thông tin */}
         <div className="col-xl-8">
           <div className="card">
             <div className="card-body">
@@ -158,8 +157,6 @@ function Checkout() {
                       )}
                     </div>
                   </li>
-
-                  {/* Phương thức thanh toán */}
                   <li className="checkout-item">
                     <div className="avatar checkout-icon p-1">
                       <div className="avatar-title rounded-circle">

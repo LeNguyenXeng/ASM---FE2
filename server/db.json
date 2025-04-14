@@ -87,7 +87,7 @@
       ],
       "totalPrice": 39360000,
       "id": 1,
-      "status": "Giao hàng thành công"
+      "status": "Đã trả hàng"
     },
     {
       "userId": "10",
@@ -224,7 +224,7 @@
         }
       ],
       "totalPrice": 3360000,
-      "status": "Đã xác nhận",
+      "status": "Trả hàng",
       "id": 7
     },
     {
@@ -247,7 +247,7 @@
         }
       ],
       "totalPrice": 3360000,
-      "status": "Đã xác nhận",
+      "status": "Giao hàng thành công",
       "id": 8
     },
     {
@@ -396,6 +396,29 @@
       "totalPrice": 10000000,
       "status": "Đã hủy",
       "id": 13
+    },
+    {
+      "userId": "10",
+      "customer": {
+        "name": "TEST Ạ",
+        "email": "tungk@gmail.com",
+        "phone": "0396180619",
+        "address": "Số nhà 82, Phố ABC, Phường XYZ, Quận LMN, TP HẢI PHÒNG",
+        "paymentMethod": "cod"
+      },
+      "items": [
+        {
+          "id": 2,
+          "name": "Ghế Ăn Vải Nỉ Bizu",
+          "price": 25000000,
+          "description": "Ghế bọc vải là một trong những sản phẩm nổi bật của Furnist. Với thiết kế ấn tượng cùng công nghệ sản xuất tiên tiến, đảm bảo về công năng sử dụng. Sản phẩm là sự thành công để mang đến không gian vẻ đẹp sang trọng, đa năng trong cách ứng dụng và an toàn cho người sử dụng.",
+          "image": "https://www.pngplay.com/wp-content/uploads/2/Modern-Chair-PNG-HD-Quality.png",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 25000000,
+      "status": "Đã xác nhận",
+      "id": 14
     }
   ],
   "users": [
